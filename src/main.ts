@@ -5,6 +5,7 @@ import { createApp } from 'vue'
 
 import { createVuetify } from 'vuetify'
 import 'vuetify/styles'
+import vuetifyConfig from './plugins/vuetify/vuetify.config'
 
 import App from './App.vue'
 import router from './router'
@@ -13,6 +14,6 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
-app.use(createVuetify())
+app.use(createVuetify(vuetifyConfig))
 
 app.mount('#app')
