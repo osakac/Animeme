@@ -12,7 +12,7 @@
               :class="{ sidebar: display.width.value < 900, 'sidebar--open': isSidebarVisible }"
             >
               <ul
-                ref="navRef"
+                v-click-outside="onClickOutside"
                 class="flex gap-6 list-none"
                 :class="{ sidebarContent: display.width.value < 900 }"
               >
@@ -80,7 +80,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, useTemplateRef } from 'vue'
+import { computed, ref, useTemplateRef } from 'vue'
 import { useDisplay } from 'vuetify'
 
 const display = useDisplay()
@@ -92,19 +92,8 @@ const isNavVisible = computed(() => {
 })
 
 const headerRef = useTemplateRef('headerRef')
-const navRef = useTemplateRef('navRef')
 
-const onClickOutside = (e: MouseEvent) => {
-  if (!navRef.value?.contains(e.target as Node)) isSidebarVisible.value = false
-}
-
-onMounted(() => {
-  window.addEventListener('click', onClickOutside)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('click', onClickOutside)
-})
+const onClickOutside = () => (isSidebarVisible.value = false)
 </script>
 
 <style scoped lang="scss">
@@ -130,20 +119,14 @@ a:hover {
   opacity: 0;
 }
 
-.overlay-enter-active ul {
-  transition: transform 0.5s ease;
-}
-
-.overlay-enter-from ul {
-  transform: translateX(100%);
-}
-
-.overlay-leave-to ul {
-  transform: translateX(100%);
-}
-
+.overlay-enter-active ul,
 .overlay-leave-active ul {
   transition: transform 0.5s ease;
+}
+
+.overlay-enter-from ul,
+.overlay-leave-to ul {
+  transform: translateX(100%);
 }
 
 .sidebar {
