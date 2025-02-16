@@ -1,5 +1,5 @@
 <template>
-  <header ref="headerRef" class="bg-black pb-5 pt-2">
+  <header ref="headerRef" class="sticky top-0 z-10 bg-black pb-5 pt-2">
     <div class="container relative">
       <div class="flex justify-between">
         <div class="flex items-end gap-7">
@@ -147,7 +147,7 @@ a:hover {
 .sidebarContent {
   width: 250px;
   height: 100%;
-  padding-top: v-bind('headerRef?.clientHeight + "px"');
+  margin-top: v-bind('headerRef?.clientHeight + "px"');
   display: flex;
   flex-direction: column;
   gap: 0;
