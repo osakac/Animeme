@@ -1,5 +1,7 @@
-<script setup lang="ts"></script>
-
 <template>
-  <h1>Home page</h1>
+  <TheSlider />
 </template>
+
+<script setup lang="ts">
+import TheSlider from '@/components/Slider/TheSlider.vue'
+</script>
