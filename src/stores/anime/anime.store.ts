@@ -3,7 +3,7 @@ import type { Anime } from '@/types/anilibria.types'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const useAnilibriaStore = defineStore('anilibria', () => {
+export const useAnimeStore = defineStore('anime', () => {
   const sliderAnimes = ref<Anime[]>([])
 
   const getSliderAnimes = async () => {

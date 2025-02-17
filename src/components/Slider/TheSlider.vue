@@ -68,10 +68,10 @@
 </template>
 
 <script setup lang="ts">
-import { useAnilibriaStore } from '@/stores/anilibria/anilibria.store'
+import { useAnimeStore } from '@/stores/anime/anime.store'
 import { onMounted } from 'vue'
 
-const anilibriaStore = useAnilibriaStore()
+const anilibriaStore = useAnimeStore()
 
 onMounted(async () => {
   await anilibriaStore.getSliderAnimes()
