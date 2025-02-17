@@ -74,7 +74,7 @@ import { onMounted } from 'vue'
 const anilibriaStore = useAnilibriaStore()
 
 onMounted(async () => {
-  await anilibriaStore.loadSliderAnimes()
+  await anilibriaStore.getSliderAnimes()
 })
 </script>
 
