@@ -1,7 +1,9 @@
 <template>
   <TheHeader />
 
-  <router-view></router-view>
+  <main class="container pt-5 pb-10">
+    <router-view></router-view>
+  </main>
 </template>
 
 <script setup lang="ts">
