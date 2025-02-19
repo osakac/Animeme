@@ -1,9 +1,9 @@
 import taxios from '@/plugins/axios/axios.config'
-import type { Anime } from '@/types/anilibria.types'
+import type { Anime, SliderAnime } from '@/types/anilibria.types'
 
 export async function loadSliderAnimes() {
   try {
-    const { data } = await taxios.get<Anime[]>('/media/promotions')
+    const { data } = await taxios.get<SliderAnime[]>('/media/promotions')
     return data.filter((slide) => slide.is_ad === false)
   } catch (error) {
     console.log('Ошибка:', error)
