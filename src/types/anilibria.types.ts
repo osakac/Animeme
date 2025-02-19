@@ -1,4 +1,4 @@
-export interface Anime {
+export interface SliderAnime {
   id: string
   description: string
   image: {
@@ -6,15 +6,17 @@ export interface Anime {
   }
   release: {
     name: { main: string }
-    poster: {
-      optimized: { src: string }
-    }
     alias: string
     age_rating: { label: string }
     season: { description: string }
     year: number
     episodes_total: number
-    genres: { id: number; name: string }[]
+    genres: Genre[]
   }
   is_ad: boolean
+}
+
+export interface Genre {
+  id: number
+  name: string
 }
