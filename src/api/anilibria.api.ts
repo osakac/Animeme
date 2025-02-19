@@ -9,3 +9,12 @@ export async function loadSliderAnimes() {
     console.log('Ошибка:', error)
   }
 }
+
+export async function loadNewEpisodesAnimes(limit = 42) {
+  try {
+    const { data } = await taxios.get<Anime[]>(`/anime/releases/latest?limit=${limit}`)
+    return data
+  } catch (error) {
+    console.log('Ошибка:', error)
+  }
+}
