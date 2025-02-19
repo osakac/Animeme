@@ -1,10 +1,10 @@
 import { loadSliderAnimes } from '@/api/anilibria.api'
-import type { Anime } from '@/types/anilibria.types'
+import type { SliderAnime } from '@/types/anilibria.types'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useAnimeStore = defineStore('anime', () => {
-  const sliderAnimes = ref<Anime[]>([])
+  const sliderAnimes = ref<SliderAnime[]>([])
 
   const getSliderAnimes = async () => {
     const data = await loadSliderAnimes()
