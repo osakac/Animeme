@@ -1,6 +1,6 @@
 <template>
   <v-carousel
-    v-if="anilibriaStore.sliderAnimes.length"
+    v-if="data.length"
     cycle
     interval="5000"
     height="350"
@@ -9,7 +9,7 @@
     class="rounded-2xl"
   >
     <v-carousel-item
-      v-for="item in anilibriaStore.sliderAnimes"
+      v-for="item in data"
       :key="item.id"
       :src="`${siteUrl}${item.image.optimized.preview}`"
       :alt="item.release.name.main"
@@ -85,15 +85,10 @@
 </template>
 
 <script setup lang="ts">
-import { useAnimeStore } from '@/stores/anime/anime.store'
-import { onMounted } from 'vue'
-
-const anilibriaStore = useAnimeStore()
 import { inject } from 'vue'
+import type { Props } from './types'
 
-onMounted(async () => {
-  await anilibriaStore.getSliderAnimes()
-})
+defineProps<Props>()
 const siteUrl = inject('siteUrl')
 </script>
 
