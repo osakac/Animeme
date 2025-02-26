@@ -1,14 +1,14 @@
 <template>
   <ul class="list-none flex gap-[19.2px] list">
-    <AnimeItemNewEpisode v-for="anime in animes" :key="anime.id" :anime="anime" />
+    <SectionAnimeNewEpisode v-for="anime in data" :key="anime.id" :anime />
   </ul>
 </template>
 
 <script setup lang="ts">
 import type { Anime } from '@/types/anilibria.types'
-import AnimeItemNewEpisode from './AnimeItemNewEpisode/AnimeItemNewEpisode.vue'
+import SectionAnimeNewEpisode from './SectionAnimeNewEpisode.vue'
 
-defineProps<{ animes: Anime[] }>()
+defineProps<{ data: Anime[] }>()
 </script>
 
 <style scoped>
