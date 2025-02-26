@@ -9,16 +9,18 @@
 </template>
 
 <script setup lang="ts">
-import { loadNewEpisodesAnimes } from '@/api/anilibria.api'
 import AnimeList from '@/components/AnimeList/AnimeList.vue'
 import TheSlider from '@/components/Slider/TheSlider.vue'
-import type { Anime } from '@/types/anilibria.types'
-import { onMounted, ref } from 'vue'
+import { useAnimeStore } from '@/stores/anime/anime.store'
+import { computed, onBeforeMount } from 'vue'
 
-const newEpisodesAnimes = ref<Anime[]>([])
+const animeStore = useAnimeStore()
 
-onMounted(async () => {
-  const newEpisodes = await loadNewEpisodesAnimes(6)
-  if (newEpisodes) newEpisodesAnimes.value = newEpisodes
+const sliderAnime = computed(() => animeStore.getSliderAnime)
+const newEpisodesAnime = computed(() => animeStore.getNewEpisodesAnime)
+
+onBeforeMount(() => {
+  animeStore.getSliderAnimeAPI()
+  animeStore.getNewEpisodesAnimeAPI(6)
 })
 </script>
