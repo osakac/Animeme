@@ -21,11 +21,21 @@ export interface Genre {
   name: string
 }
 
+export interface Episode {
+  duration: number
+  name: string
+  ordinal: number
+  preview: { optimized: { src: string } }
+  hls_1080: string
+}
+
 export interface Anime {
   id: number
+  description: string
   alias: string
   episodes_total: number
-  name: { main: string }
+  episodes: Episode[]
+  name: { main: string; english: string }
   year: number
   latest_episode: { ordinal: number }
   poster: { optimized: { src: string } }
@@ -33,4 +43,5 @@ export interface Anime {
   type: { description: string }
   genres: Genre[]
   age_rating: { label: string }
+  updated_at: Date
 }
