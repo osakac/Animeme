@@ -9,7 +9,7 @@
     <v-carousel-item
       v-for="item in anilibriaStore.sliderAnimes"
       :key="item.id"
-      :src="`https://anilibria.top${item.image.optimized.preview}`"
+      :src="`${siteUrl}${item.image.optimized.preview}`"
       :alt="item.release.name.main"
       class="slide"
       cover
@@ -72,10 +72,12 @@ import { useAnimeStore } from '@/stores/anime/anime.store'
 import { onMounted } from 'vue'
 
 const anilibriaStore = useAnimeStore()
+import { inject } from 'vue'
 
 onMounted(async () => {
   await anilibriaStore.getSliderAnimes()
 })
+const siteUrl = inject('siteUrl')
 </script>
 
 <style>
