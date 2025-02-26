@@ -1,19 +1,19 @@
 <template>
-  <header ref="headerRef" class="sticky top-0 z-10 bg-black pb-5 pt-2">
+  <header ref="headerRef" class="sticky top-0 z-10 pb-5 pt-2 bg-background-deep">
     <div class="container relative">
       <div class="flex justify-between">
         <div class="flex items-end gap-7">
-          <router-link to="/" class="mr-4">
+          <router-link to="/" class="text-main mr-4">
             <h1 class="title text-4xl">Animeme</h1>
           </router-link>
           <transition name="overlay">
             <nav
               v-if="isNavVisible"
-              :class="{ sidebar: display.width.value < 900, 'sidebar--open': isSidebarVisible }"
+              :class="{ sidebar: display.width.value < 900, open: isSidebarVisible }"
             >
               <ul
                 v-click-outside="onClickOutside"
-                class="flex gap-6 list-none"
+                class="flex gap-6 list-none text-main"
                 :class="{ sidebarContent: display.width.value < 900 }"
               >
                 <li>
@@ -53,25 +53,31 @@
             size="x-small"
             icon="fa-solid fa-magnifying-glass"
             v-tooltip:bottom="'Поиск'"
+            color="text-main"
           ></v-btn>
           <v-btn
+            to="/settings"
             variant="text"
             size="x-small"
             icon="fa-solid fa-gear"
             v-tooltip:bottom="'Настройки'"
+            color="text-main"
           ></v-btn>
           <v-btn
+            to="/profile"
             variant="text"
             size="x-small"
             icon="fa-solid fa-user"
             v-tooltip:bottom="'Профиль'"
+            color="text-main"
           ></v-btn>
           <v-btn
+            v-if="display.width.value < 900"
             @click.stop="isSidebarVisible = !isSidebarVisible"
             variant="text"
             size="x-small"
             icon="fa-solid fa-bars"
-            v-if="display.width.value < 900"
+            color="text-main"
           ></v-btn>
         </div>
       </div>
@@ -90,23 +96,33 @@ const isNavVisible = computed(() => {
   if (display.width.value >= 900) return true
   return isSidebarVisible.value
 })
+const onClickOutside = () => (isSidebarVisible.value = false)
 
 const headerRef = useTemplateRef('headerRef')
-
-const onClickOutside = () => (isSidebarVisible.value = false)
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .title {
   font-family: 'Darumadrop One';
+  transition: all 0.4s ease;
+
+  &:hover {
+    color: rgb(var(--v-theme-accent));
+  }
 }
 
-a:hover {
-  opacity: 0.6;
+nav {
+  a {
+    transition: all 0.4s ease;
+  }
+
+  a:hover {
+    color: rgb(var(--v-theme-accent));
+  }
 }
 
 .v-btn:hover {
-  background-color: var(--vt-c-black-mute);
+  background-color: rgb(var(--v-theme-secondary-light));
 }
 
 .overlay-enter-active,
@@ -139,7 +155,7 @@ a:hover {
   right: 0;
   background: rgb(0 0 0 / 30%);
 
-  &--open {
+  &.open {
     display: flex;
   }
 }

@@ -1,9 +1,11 @@
 <template>
   <v-carousel
     v-if="anilibriaStore.sliderAnimes.length"
+    cycle
     interval="5000"
     height="350"
     hide-delimiter-background
+    color="white"
     class="rounded-2xl"
   >
     <v-carousel-item
@@ -15,31 +17,46 @@
       cover
     >
       <div class="h-full max-w-2xl xl:max-w-4xl px-10 pb-15 flex flex-col justify-end gap-3">
-        <h3 class="text-2xl">{{ item.release.name.main }}</h3>
+        <h3 class="text-2xl text-white">{{ item.release.name.main }}</h3>
         <div>
-          <span class="anime-info">{{ item.release.year }}</span>
-          <span class="anime-info">{{ item.release.season.description }}</span>
-          <span class="anime-info">{{ item.release.episodes_total }} эпизодов</span>
-          <span class="anime-info">{{ item.release.age_rating.label }}</span>
-          <div>
+          <div class="flex">
+            <span class="anime-info text-secondary--static">{{ item.release.year }}</span>
+            <span class="anime-info text-secondary--static">
+              {{ item.release.season.description }}
+            </span>
+            <span class="anime-info text-secondary--static">
+              {{ item.release.episodes_total }} эпизодов
+            </span>
+            <span class="anime-info text-secondary--static">
+              {{ item.release.age_rating.label }}
+            </span>
+          </div>
+          <div class="flex">
             <span
               v-for="genre in item.release.genres"
               :key="genre.id"
-              class="anime-info text-white/60!"
+              class="anime-info text-secondary-deep--static"
             >
               {{ genre.name }}
             </span>
           </div>
         </div>
-        <p class="description max-h-15 hidden lg:block overflow-y-scroll text-sm text-white/80">
+        <p
+          class="description max-w-[600px] max-h-18 hidden lg:block overflow-y-scroll text-sm text-secondary--static"
+        >
           {{ item.description }}
         </p>
-        <router-link
+        <v-btn
           :to="{ name: 'anime', params: { animeAlias: item.release.alias } }"
-          class="w-fit"
+          variant="tonal"
+          density="comfortable"
+          class="w-fit text-white"
         >
-          <v-btn variant="tonal" density="default" prepend-icon="fa-solid fa-play">Смотреть</v-btn>
-        </router-link>
+          <template #prepend>
+            <v-icon icon="fa-solid fa-play" size="small"></v-icon>
+          </template>
+          Смотреть
+        </v-btn>
       </div>
     </v-carousel-item>
 
@@ -80,15 +97,15 @@ onMounted(async () => {
 const siteUrl = inject('siteUrl')
 </script>
 
-<style>
+<style scoped>
 @reference "tailwindcss";
 
-.slide img {
+:deep(.slide img) {
   @apply brightness-[0.3];
 }
 
 .anime-info {
-  @apply text-sm text-white/80;
+  @apply text-sm/tight;
 
   &:not(:first-child)::before {
     content: '•';
@@ -100,12 +117,16 @@ const siteUrl = inject('siteUrl')
   @apply hidden;
 }
 
+.v-btn--icon.v-btn--density-default {
+  @apply w-10 h-10;
+}
+
 .btnPrev,
 .btnNext {
-  @apply absolute right-10 bottom-15 rounded-xl;
+  @apply absolute right-10 bottom-15 rounded-xl text-white;
 }
 
 .btnPrev {
-  right: calc(40px + (48px + 10px));
+  right: calc(40px + (40px + 10px));
 }
 </style>
