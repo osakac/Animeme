@@ -29,19 +29,21 @@
 
           <div class="flex flex-col items-center">
             <div class="flex">
-              <span class="anime-info text-secondary--static">{{ anime.year }}</span>
-              <span class="anime-info text-secondary--static">{{ anime.season.description }}</span>
-              <span class="anime-info text-secondary--static">{{ anime.type.description }}</span>
-              <span class="anime-info text-secondary--static">{{ anime.age_rating.label }}</span>
+              <InfoDivider
+                :data="[
+                  anime.year.toString(),
+                  anime.season.description,
+                  anime.type.description,
+                  anime.age_rating.label,
+                ]"
+                class="text-secondary--static text-xs"
+              />
             </div>
             <div class="flex">
-              <span
-                v-for="genre in anime.genres.slice(0, 2)"
-                :key="genre.id"
-                class="anime-info text-secondary-deep--static"
-              >
-                {{ genre.name }}
-              </span>
+              <InfoDivider
+                :data="anime.genres.slice(0, 2).map((genre) => genre.name)"
+                class="text-secondary-deep--static text-xs"
+              />
             </div>
           </div>
         </div>
@@ -51,6 +53,7 @@
 </template>
 
 <script setup lang="ts">
+import InfoDivider from '@/components/InfoDivider/InfoDivider.vue'
 import type { Anime } from '@/types/anilibria.types'
 import { inject, ref } from 'vue'
 
@@ -69,15 +72,6 @@ const showInfo = () => {
 
 .title::-webkit-scrollbar {
   display: none;
-}
-
-.anime-info {
-  @apply text-xs/tight;
-
-  &:not(:first-child)::before {
-    content: '•';
-    @apply mx-[5px];
-  }
 }
 
 .info-enter-active,

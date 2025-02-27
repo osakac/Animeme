@@ -20,25 +20,21 @@
         <h3 class="text-2xl text-white">{{ item.release.name.main }}</h3>
         <div>
           <div class="flex">
-            <span class="anime-info text-secondary--static">{{ item.release.year }}</span>
-            <span class="anime-info text-secondary--static">
-              {{ item.release.season.description }}
-            </span>
-            <span class="anime-info text-secondary--static">
-              {{ item.release.episodes_total }} эпизодов
-            </span>
-            <span class="anime-info text-secondary--static">
-              {{ item.release.age_rating.label }}
-            </span>
+            <InfoDivider
+              :data="[
+                item.release.year.toString(),
+                item.release.season.description,
+                `${item.release.episodes_total} эпизодов`,
+                item.release.age_rating.label,
+              ]"
+              class="text-secondary text-sm"
+            />
           </div>
           <div class="flex">
-            <span
-              v-for="genre in item.release.genres"
-              :key="genre.id"
-              class="anime-info text-secondary-deep--static"
-            >
-              {{ genre.name }}
-            </span>
+            <InfoDivider
+              :data="item.release.genres.map((genre) => genre.name)"
+              class="text-secondary-deep text-sm"
+            />
           </div>
         </div>
         <p
@@ -86,6 +82,7 @@
 
 <script setup lang="ts">
 import { inject } from 'vue'
+import InfoDivider from '../InfoDivider/InfoDivider.vue'
 import type { Props } from './types'
 
 defineProps<Props>()
@@ -97,15 +94,6 @@ const siteUrl = inject('siteUrl')
 
 :deep(.slide img) {
   @apply brightness-[0.3];
-}
-
-.anime-info {
-  @apply text-sm/tight;
-
-  &:not(:first-child)::before {
-    content: '•';
-    @apply mx-[5px];
-  }
 }
 
 .description::-webkit-scrollbar {
