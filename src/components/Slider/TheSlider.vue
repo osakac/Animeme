@@ -24,7 +24,7 @@
               :data="[
                 item.release.year.toString(),
                 item.release.season.description,
-                `${item.release.episodes_total} эпизодов`,
+                pluralizeEpisodes(item.release.episodes_total),
                 item.release.age_rating.label,
               ]"
               class="text-secondary text-sm"
@@ -81,6 +81,7 @@
 </template>
 
 <script setup lang="ts">
+import { pluralizeEpisodes } from '@/helpers/pluralize'
 import { inject } from 'vue'
 import InfoDivider from '../InfoDivider/InfoDivider.vue'
 import type { Props } from './types'
