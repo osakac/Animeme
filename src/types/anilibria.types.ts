@@ -42,6 +42,41 @@ export interface Anime {
   season: { description: string }
   type: { description: string }
   genres: Genre[]
+  members: Member[]
   age_rating: { label: string }
   updated_at: Date
+}
+
+export interface Franchise {
+  name: string
+  name_english: string
+  franchise_releases: FranchiseRelease[]
+  first_year: number
+  last_year: number
+  total_duration: string
+  total_episodes: number
+  total_releases: number
+}
+
+export interface FranchiseRelease {
+  id: string
+  sort_order: number
+  release_id: number
+  release: {
+    alias: string
+    age_rating: { label: string }
+    episodes_total: number
+    name: { main: string; english: string }
+    season: { description: string }
+    type: { description: string }
+    year: number
+    poster: { optimized: { src: string } }
+  }
+}
+
+export interface Member {
+  id: string
+  nickname: string
+  role: { description: string }
+  user: { avatar: { optimized: { preview: string } } }
 }

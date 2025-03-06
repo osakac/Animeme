@@ -9,5 +9,6 @@
 <script setup lang="ts">
 import { provide } from 'vue'
 import TheHeader from './components/Header/TheHeader.vue'
+
 provide('siteUrl', 'https://anilibria.top')
 </script>

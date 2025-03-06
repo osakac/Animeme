@@ -31,7 +31,7 @@ const vuetifyConfig: VuetifyOptions = {
   },
   defaults: {
     VBtn: {
-      style: 'text-transform: capitalize',
+      style: 'text-transform: none; font-weight: bold',
     },
   },
 }
