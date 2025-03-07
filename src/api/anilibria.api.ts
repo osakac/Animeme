@@ -36,3 +36,12 @@ export async function loadAnimeFranchise(franchiseId: number) {
     console.log('Ошибка:', error)
   }
 }
+
+export async function loadAnimeSearch(query: string) {
+  try {
+    const { data } = await taxios.get<Anime[]>(`/app/search/releases?query=${query}`)
+    return data
+  } catch (error) {
+    console.log('Ошибка:', error)
+  }
+}

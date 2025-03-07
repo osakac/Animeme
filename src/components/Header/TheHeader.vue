@@ -48,13 +48,25 @@
         </div>
 
         <div class="flex items-end gap-4">
-          <v-btn
-            variant="text"
-            size="x-small"
-            icon="fa-solid fa-magnifying-glass"
-            v-tooltip:bottom="'Поиск'"
-            color="text-main"
-          ></v-btn>
+          <v-dialog
+            v-model="isSearchVisible"
+            max-width="700"
+            scrim="black"
+            opacity="0.7"
+            transition="dialog-transition"
+          >
+            <template #activator="{ props }">
+              <v-btn
+                v-bind="props"
+                variant="text"
+                size="x-small"
+                icon="fa-solid fa-magnifying-glass"
+                v-tooltip:bottom="'Поиск'"
+                color="text-main"
+              ></v-btn>
+            </template>
+            <TheSearch @close="isSearchVisible = false" />
+          </v-dialog>
           <v-btn
             to="/settings"
             variant="text"
@@ -88,6 +100,7 @@
 <script setup lang="ts">
 import { computed, ref, useTemplateRef } from 'vue'
 import { useDisplay } from 'vuetify'
+import TheSearch from '../Search/TheSearch.vue'
 
 const display = useDisplay()
 
@@ -97,6 +110,8 @@ const isNavVisible = computed(() => {
   return isSidebarVisible.value
 })
 const onClickOutside = () => (isSidebarVisible.value = false)
+
+const isSearchVisible = ref(false)
 
 const headerRef = useTemplateRef('headerRef')
 </script>
