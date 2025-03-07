@@ -12,10 +12,10 @@
 
   <v-sheet class="p-3! rounded-xl!">
     <ul
-      v-if="episodesCmp.length"
+      v-if="episodesList.length"
       class="list max-h-[420px] grid max-[600px]:grid-cols-1 max-[900px]:grid-cols-2 grid-cols-3 gap-5"
     >
-      <AnimeInfoEpisode v-for="episode in episodesCmp" :key="episode.ordinal" :episode />
+      <AnimeInfoEpisode v-for="episode in episodesList" :key="episode.ordinal" :episode />
     </ul>
 
     <div v-else class="flex items-center justify-center h-[173px]">
@@ -26,20 +26,26 @@
 
 <script setup lang="ts">
 import type { Episode } from '@/types/anilibria.types'
-import { computed, ref } from 'vue'
+import { ref, watch } from 'vue'
 import AnimeInfoEpisode from './AnimeInfoEpisode.vue'
 
 const props = defineProps<{ episodes: Episode[] }>()
 
+const episodesList = ref(props.episodes)
 const search = ref('')
-const episodesCmp = computed(() => {
-  if (search.value && !isNaN(+search.value)) {
-    return props.episodes.filter((episode) => episode.ordinal === +search.value)
+watch(search, (searchValue) => {
+  if (!searchValue) return (episodesList.value = props.episodes)
+
+  if (!isNaN(+search.value)) {
+    const episode = props.episodes.filter((episode) => episode.ordinal === +search.value)
+    episodesList.value = episode
+    return
   }
 
-  return props.episodes.filter((episode) =>
-    (episode.name ?? '').toLowerCase().includes(search.value.toLowerCase()),
+  const episode = props.episodes.filter((episode) =>
+    episode.name?.toLowerCase().includes(search.value.toLowerCase()),
   )
+  episodesList.value = episode
 })
 </script>
 
