@@ -13,7 +13,7 @@
   <v-sheet class="p-3! rounded-xl!">
     <ul
       v-if="episodesList.length"
-      class="list max-h-[420px] grid max-[600px]:grid-cols-1 max-[900px]:grid-cols-2 grid-cols-3 gap-5"
+      class="list max-h-[540px] grid max-[600px]:grid-cols-1 max-[900px]:grid-cols-2 grid-cols-3 gap-5"
     >
       <AnimeInfoEpisode v-for="episode in episodesList" :key="episode.ordinal" :episode />
     </ul>
