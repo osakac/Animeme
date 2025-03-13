@@ -13,7 +13,7 @@ export const useAnimeStore = defineStore('anime', () => {
 
   const newEpisodesAnime = ref<Anime[]>([])
   const getNewEpisodesAnime = computed(() => newEpisodesAnime.value)
-  const getNewEpisodesAnimeAPI = async (limit: number) => {
+  const getNewEpisodesAnimeAPI = async (limit?: number) => {
     const data = await loadAnimeNewEpisodes(limit)
     if (data) newEpisodesAnime.value = data
   }

@@ -13,6 +13,11 @@ const router = createRouter({
       name: 'anime',
       component: () => import('@/views/AnimeView.vue'),
     },
+    {
+      path: '/new-episodes',
+      name: 'new-episodes',
+      component: () => import('@/views/NewEpisodesView.vue'),
+    },
   ],
 })
 
