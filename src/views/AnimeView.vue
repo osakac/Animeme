@@ -1,23 +1,5 @@
 <template>
-  <v-breadcrumbs
-    v-if="display.smAndUp.value"
-    :items="breadcrumbsLinks"
-    class="overflow-x-hidden px-0 py-0 mb-5"
-  >
-    <template #item="{ item, index }">
-      <router-link
-        :to="item.to!"
-        :class="{ disabled: index === breadcrumbsLinks.length - 1 }"
-        class="breadcrumb text-nowrap"
-      >
-        {{ item.title }}
-      </router-link>
-    </template>
-
-    <template #divider>
-      <v-icon icon="fa-solid fa-chevron-right" size="xs-small" class="text-xs"></v-icon>
-    </template>
-  </v-breadcrumbs>
+  <AppBreadcrumbs :breadcrumbs-links="breadcrumbsLinks" v-if="display.smAndUp.value" />
 
   <div v-if="anime">
     <div class="max-w-[950px]">
@@ -135,6 +117,7 @@ import { loadAnimeInfo } from '@/api/anilibria.api'
 import AnimeInfoEpisodes from '@/components/AnimeInfo/Episodes/AnimeInfoEpisodes.vue'
 import AnimeInfoFranchise from '@/components/AnimeInfo/Franchise/AnimeInfoFranchise.vue'
 import AnimeInfoMembers from '@/components/AnimeInfo/Members/AnimeInfoMembers.vue'
+import AppBreadcrumbs from '@/components/Breadcrumbs/AppBreadcrumbs.vue'
 import InfoDivider from '@/components/InfoDivider/InfoDivider.vue'
 import { getTotalWatchTime } from '@/helpers/getTotalWatchTime'
 import { getWeekday } from '@/helpers/getWeekday'
@@ -207,19 +190,6 @@ watch(
 
 <style scoped>
 @reference "tailwindcss";
-
-.breadcrumb {
-  color: rgb(var(--v-theme-main));
-
-  &:hover {
-    color: rgb(var(--v-theme-accent));
-  }
-
-  &.disabled {
-    @apply pointer-events-none overflow-hidden text-ellipsis;
-    color: rgb(var(--v-theme-secondary-deep));
-  }
-}
 
 .active {
   background-color: rgb(var(--v-theme-accent));
