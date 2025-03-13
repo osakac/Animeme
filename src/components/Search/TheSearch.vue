@@ -38,30 +38,31 @@
 
 <script setup lang="ts">
 import { loadAnimeSearch } from '@/api/anilibria.api'
+import { useSearch } from '@/composables/useSearch'
 import { debounce } from '@/helpers/debounce'
 import type { Anime } from '@/types/anilibria.types'
-import { inject, ref, watch } from 'vue'
+import { inject, ref } from 'vue'
 import InfoDivider from '../InfoDivider/InfoDivider.vue'
 
 const emit = defineEmits<{ (e: 'close'): void }>()
 const siteUrl = inject('siteUrl')
 
-const search = ref('')
+const { search } = useSearch(onSearch)
 const searchList = ref<Anime[]>([])
-const onSearch = async () => {
+const load = async () => {
   const data = await loadAnimeSearch(search.value)
   if (data) searchList.value = data
 }
-const debounceSearch = debounce(onSearch, 500)
-const close = () => emit('close')
-
-watch(search, (searchValue) => {
+const debounceSearch = debounce(load, 500)
+function onSearch() {
   if (!search.value) {
     searchList.value = []
     return
   }
-  debounceSearch(searchValue)
-})
+  debounceSearch(search.value)
+}
+
+const close = () => emit('close')
 </script>
 
 <style scoped>

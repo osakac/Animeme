@@ -22,16 +22,17 @@
 </template>
 
 <script setup lang="ts">
+import { useSearch } from '@/composables/useSearch'
 import type { Episode } from '@/types/anilibria.types'
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import AnimeInfoEpisode from './AnimeInfoEpisode.vue'
 
 const props = defineProps<{ episodes: Episode[] }>()
 
 const episodesList = ref(props.episodes)
-const search = ref('')
-watch(search, (searchValue) => {
-  if (!searchValue) return (episodesList.value = props.episodes)
+const { search } = useSearch(onSearch)
+function onSearch() {
+  if (!search.value) return (episodesList.value = props.episodes)
 
   if (!isNaN(+search.value)) {
     const episode = props.episodes.filter((episode) => episode.ordinal === +search.value)
@@ -43,7 +44,7 @@ watch(search, (searchValue) => {
     episode.name?.toLowerCase().includes(search.value.toLowerCase()),
   )
   episodesList.value = episode
-})
+}
 </script>
 
 <style scoped>
