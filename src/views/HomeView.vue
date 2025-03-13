@@ -1,17 +1,20 @@
 <template>
   <div class="flex flex-col gap-10">
     <TheSlider :data="sliderAnime" />
-    <SectionAnime
-      variant="NewEpisodes"
-      :data="newEpisodesAnime"
+
+    <AppSection
+      :to="{ name: 'new-episodes' }"
       title="Новые эпизоды"
       subtitle="Самые новые и свежие эпизоды в любимой озвучке"
-    />
+    >
+      <NewEpisodes :episodes="newEpisodesAnime" view="linear" />
+    </AppSection>
   </div>
 </template>
 
 <script setup lang="ts">
-import SectionAnime from '@/components/SectionAnime/SectionAnime.vue'
+import NewEpisodes from '@/components/NewEpisodes/NewEpisodes.vue'
+import AppSection from '@/components/Section/AppSection.vue'
 import TheSlider from '@/components/Slider/TheSlider.vue'
 import { useAnimeStore } from '@/stores/anime/anime.store'
 import { computed, onBeforeMount } from 'vue'
