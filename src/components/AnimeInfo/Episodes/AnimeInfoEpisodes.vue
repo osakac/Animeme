@@ -4,9 +4,6 @@
       v-model="search"
       @click:clear="search = ''"
       placeholder="Введите название или номер серии"
-      clearable
-      hide-details
-      class="input"
     ></v-text-field>
   </div>
 
@@ -58,16 +55,5 @@ watch(search, (searchValue) => {
   &::-webkit-scrollbar {
     @apply hidden;
   }
-}
-
-:deep(.input .v-field__outline::before) {
-  @apply border-0;
-}
-:deep(.input .v-field__outline::after) {
-  @apply w-0;
-}
-
-:deep(.v-field__overlay) {
-  @apply rounded-lg;
 }
 </style>

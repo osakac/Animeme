@@ -33,6 +33,11 @@ const vuetifyConfig: VuetifyOptions = {
     VBtn: {
       style: 'text-transform: none; font-weight: bold',
     },
+    VTextField: {
+      variant: 'solo-filled',
+      hideDetails: true,
+      clearable: true,
+    },
   },
 }
 

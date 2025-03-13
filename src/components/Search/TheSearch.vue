@@ -4,9 +4,6 @@
       v-model="search"
       @click:clear="search = ''"
       placeholder="Введите название аниме..."
-      clearable
-      hide-details
-      class="input"
     ></v-text-field>
 
     <v-list v-if="searchList.length" class="mt-5 rounded-xl! max-h-[500px] list">
@@ -72,16 +69,6 @@ watch(search, (searchValue) => {
 
 .search {
   background-color: rgb(var(--v-theme-background));
-}
-
-:deep(.input .v-field__outline::before) {
-  @apply border-0;
-}
-:deep(.input .v-field__outline::after) {
-  @apply w-0;
-}
-:deep(.v-field__overlay) {
-  @apply rounded-lg;
 }
 
 .list::-webkit-scrollbar {
