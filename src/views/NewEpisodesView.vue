@@ -21,14 +21,15 @@ import NewEpisodes from '@/components/NewEpisodes/NewEpisodes.vue'
 import AppSection from '@/components/Section/AppSection.vue'
 import { useSearch } from '@/composables/useSearch'
 import { useAnimeStore } from '@/stores/anime/anime.store'
+import { RouteNames } from '@/router'
 import type { Anime } from '@/types/anilibria.types'
 import { computed, onBeforeMount, ref, watch } from 'vue'
 
 const animeStore = useAnimeStore()
 
 const breadcrumbsLinks = [
-  { title: 'Главная страница', to: '/' },
-  { title: 'Последние релизы', to: '' },
+  { title: 'Главная страница', to: { name: RouteNames.Home } },
+  { title: 'Последние релизы', to: { name: RouteNames.Home } },
 ]
 
 const allEpisodes = computed(() => animeStore.getNewEpisodesAnime)

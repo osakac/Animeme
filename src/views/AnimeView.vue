@@ -121,6 +121,7 @@ import AppBreadcrumbs from '@/components/Breadcrumbs/AppBreadcrumbs.vue'
 import InfoDivider from '@/components/InfoDivider/InfoDivider.vue'
 import { getTotalWatchTime } from '@/helpers/getTotalWatchTime'
 import { getWeekday } from '@/helpers/getWeekday'
+import { RouteNames } from '@/router'
 import type { Anime } from '@/types/anilibria.types'
 import { computed, inject, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
@@ -135,9 +136,9 @@ const isFavourite = ref(false)
 const onChangeFavourite = () => (isFavourite.value = !isFavourite.value)
 
 const breadcrumbsLinks = computed(() => [
-  { title: 'Главная страница', to: '/' },
-  { title: 'Каталог аниме', to: '/catalog' },
-  { title: anime.value?.name.main ?? '', to: '/' },
+  { title: 'Главная страница', to: { name: RouteNames.Home } },
+  { title: 'Каталог аниме', to: { name: RouteNames.Catalog } },
+  { title: anime.value?.name.main ?? '', to: { name: RouteNames.Home } },
 ])
 
 const genresCmp = computed(() => anime.value?.genres.map((genre) => genre.name) ?? [])

@@ -17,7 +17,12 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ breadcrumbsLinks: { title: string; to: string }[] }>()
+import type { RouteNames } from '@/router'
+
+interface Props {
+  breadcrumbsLinks: { title: string; to: { name: RouteNames } }[]
+}
+defineProps<Props>()
 </script>
 
 <style scoped>
