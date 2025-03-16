@@ -3,7 +3,7 @@
     <TheSlider :data="sliderAnime" />
 
     <AppSection
-      :to="{ name: 'new-episodes' }"
+      :to="{ name: RouteNames.NewEpisodes }"
       title="Новые эпизоды"
       subtitle="Самые новые и свежие эпизоды в любимой озвучке"
     >

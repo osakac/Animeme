@@ -3,7 +3,7 @@
     <template #default="{ isHovering, props }">
       <v-card
         v-bind="props"
-        :to="{ name: 'anime', params: { animeAlias: anime.alias } }"
+        :to="{ name: RouteNames.Anime, params: { animeAlias: anime.alias } }"
         :image="`${siteUrl}${anime.poster.optimized.src}`"
         v-touch="{
           start: onTouchStart,
@@ -21,6 +21,7 @@
 
 <script setup lang="ts">
 import { useTouchVisible } from '@/composables/useTouchVisible'
+import { RouteNames } from '@/router'
 import type { Anime } from '@/types/anilibria.types'
 import { inject } from 'vue'
 import CardContentEpisode from '../CardContent/CardContentEpisode.vue'

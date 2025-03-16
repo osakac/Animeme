@@ -25,7 +25,7 @@
         <v-list-item
           v-for="item in franchiseReleases"
           :key="item.id"
-          :to="{ name: 'anime', params: { animeAlias: item.release.alias } }"
+          :to="{ name: RouteNames.Anime, params: { animeAlias: item.release.alias } }"
           class="franchise py-2"
         >
           <template #prepend>
@@ -68,6 +68,7 @@
 import { loadAnimeFranchise } from '@/api/anilibria.api'
 import InfoDivider from '@/components/InfoDivider/InfoDivider.vue'
 import { pluralizeEpisodes, pluralizeSeasons } from '@/helpers/pluralize'
+import { RouteNames } from '@/router'
 import type { Franchise } from '@/types/anilibria.types'
 import { computed, inject, onBeforeMount, ref } from 'vue'
 

@@ -43,7 +43,7 @@
           {{ item.description }}
         </p>
         <v-btn
-          :to="{ name: 'anime', params: { animeAlias: item.release.alias } }"
+          :to="{ name: RouteNames.Anime, params: { animeAlias: item.release.alias } }"
           variant="tonal"
           density="comfortable"
           class="w-fit text-white"
@@ -82,6 +82,7 @@
 
 <script setup lang="ts">
 import { pluralizeEpisodes } from '@/helpers/pluralize'
+import { RouteNames } from '@/router'
 import { inject } from 'vue'
 import InfoDivider from '../InfoDivider/InfoDivider.vue'
 import type { Props } from './types'
