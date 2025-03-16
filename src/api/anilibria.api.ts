@@ -1,7 +1,7 @@
 import taxios from '@/plugins/axios/axios.config'
 import type { Anime, Franchise, SliderAnime } from '@/types/anilibria.types'
 
-export async function loadAnimeSlider() {
+export async function loadSliderData() {
   try {
     const { data } = await taxios.get<SliderAnime[]>('/media/promotions')
     return data.filter((slide) => slide.is_ad === false)
@@ -10,7 +10,7 @@ export async function loadAnimeSlider() {
   }
 }
 
-export async function loadAnimeNewEpisodes(limit = 42) {
+export async function loadNewEpisodes(limit = 42) {
   try {
     const { data } = await taxios.get<Anime[]>(`/anime/releases/latest?limit=${limit}`)
     return data
