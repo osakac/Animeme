@@ -1,6 +1,8 @@
 <template>
+  <v-skeleton-loader v-if="!data" type="image@2" />
+
   <v-carousel
-    v-if="data.length"
+    v-else
     cycle
     interval="5000"
     height="350"
@@ -83,11 +85,11 @@
 <script setup lang="ts">
 import { pluralizeEpisodes } from '@/helpers/pluralize'
 import { RouteNames } from '@/router'
+import type { SliderAnime } from '@/types/anilibria.types'
 import { inject } from 'vue'
 import InfoDivider from '../InfoDivider/InfoDivider.vue'
-import type { Props } from './types'
 
-defineProps<Props>()
+defineProps<{ data: SliderAnime[] | null }>()
 const siteUrl = inject('siteUrl')
 </script>
 

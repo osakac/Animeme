@@ -1,6 +1,15 @@
 <template>
   <ul :class="view">
-    <NewEpisode v-for="anime in episodes" :key="anime.id" :anime />
+    <template v-if="!episodes">
+      <v-skeleton-loader
+        v-for="(_, idx) in 6"
+        :key="idx"
+        type="image@2"
+        class="max-w-48 h-72 w-full shrink-0"
+      />
+    </template>
+
+    <NewEpisode v-else v-for="anime in episodes" :key="anime.id" :anime />
   </ul>
 </template>
 
@@ -8,7 +17,7 @@
 import type { Anime } from '@/types/anilibria.types'
 import NewEpisode from './NewEpisode.vue'
 
-defineProps<{ episodes: Anime[]; view: 'list' | 'linear' }>()
+defineProps<{ episodes: Anime[] | null; view: 'list' | 'linear' }>()
 </script>
 
 <style scoped>

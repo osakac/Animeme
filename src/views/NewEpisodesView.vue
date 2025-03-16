@@ -16,39 +16,39 @@
 </template>
 
 <script setup lang="ts">
+import { loadNewEpisodes } from '@/api/anilibria.api'
 import AppBreadcrumbs from '@/components/Breadcrumbs/AppBreadcrumbs.vue'
 import NewEpisodes from '@/components/NewEpisodes/NewEpisodes.vue'
 import AppSection from '@/components/Section/AppSection.vue'
 import { useSearch } from '@/composables/useSearch'
-import { useAnimeStore } from '@/stores/anime/anime.store'
 import { RouteNames } from '@/router'
 import type { Anime } from '@/types/anilibria.types'
-import { computed, onBeforeMount, ref, watch } from 'vue'
-
-const animeStore = useAnimeStore()
+import { onMounted, ref, watch } from 'vue'
 
 const breadcrumbsLinks = [
   { title: 'Главная страница', to: { name: RouteNames.Home } },
   { title: 'Последние релизы', to: { name: RouteNames.Home } },
 ]
 
-const allEpisodes = computed(() => animeStore.getNewEpisodesAnime)
-const newEpisodes = ref<Anime[]>([])
+const allEpisodes = ref<Anime[] | null>(null)
+const newEpisodes = ref<Anime[] | null>(null)
 
 const { search } = useSearch(onSearch)
 function onSearch() {
   if (!search) {
     newEpisodes.value = allEpisodes.value
   } else {
-    newEpisodes.value = allEpisodes.value.filter((episode) =>
-      episode.name.main.toLowerCase().includes(search.value.toLowerCase()),
-    )
+    if (allEpisodes.value)
+      newEpisodes.value = allEpisodes.value.filter((episode) =>
+        episode.name.main.toLowerCase().includes(search.value.toLowerCase()),
+      )
   }
 }
 
 watch(allEpisodes, () => (newEpisodes.value = allEpisodes.value))
-onBeforeMount(async () => {
-  await animeStore.getNewEpisodesAnimeAPI()
+onMounted(async () => {
+  const data = await loadNewEpisodes()
+  if (data) allEpisodes.value = data
 })
 </script>
 
