@@ -20,3 +20,6 @@ export const pluralizeEpisodes = (number: number) =>
 
 export const pluralizeSeasons = (number: number) =>
   pluralize(number, ['сезон', 'сезона', 'сезонов'])
+
+export const pluralizeReleases = (number: number) =>
+  pluralize(number, ['релиз', 'релиза', 'релизов'])

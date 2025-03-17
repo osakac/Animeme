@@ -11,12 +11,12 @@ export interface SliderAnime {
     season: { description: string }
     year: number
     episodes_total: number
-    genres: Genre[]
+    genres: AnimeGenre[]
   }
   is_ad: boolean
 }
 
-export interface Genre {
+export interface AnimeGenre {
   id: number
   name: string
 }
@@ -41,7 +41,7 @@ export interface Anime {
   poster: { optimized: { src: string } }
   season: { description: string }
   type: { description: string }
-  genres: Genre[]
+  genres: AnimeGenre[]
   members: Member[]
   age_rating: { label: string }
   updated_at: Date
@@ -100,6 +100,17 @@ export interface Video {
   title: string
   url: string
   views: number
+  image: {
+    optimized: {
+      preview: string
+    }
+  }
+}
+
+export interface Genre {
+  id: number
+  name: string
+  total_releases: number
   image: {
     optimized: {
       preview: string
