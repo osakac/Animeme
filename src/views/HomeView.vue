@@ -29,6 +29,13 @@
       <GenresList :genres view="linear" />
     </AppSection>
 
+    <AppSection
+      title="Франшизы"
+      subtitle="Самые интересные и захватывающие франшизы в любимой озвучке"
+    >
+      <FranchisesList :franchises />
+    </AppSection>
+
     <AppSection title="Новые видео" subtitle="Самые интересные видео ролики от любимой команды">
       <NewVideos :videos="newVideos" />
     </AppSection>
@@ -37,12 +44,14 @@
 
 <script setup lang="ts">
 import {
+  loadFranchises,
   loadGenres,
   loadNewEpisodes,
   loadNewVideos,
   loadSchedule,
   loadSliderData,
 } from '@/api/anilibria.api'
+import FranchisesList from '@/components/Franchises/FranchisesList.vue'
 import GenresList from '@/components/Genres/GenresList.vue'
 import NewEpisodes from '@/components/NewEpisodes/NewEpisodes.vue'
 import ScheduleTable from '@/components/ScheduleTable/ScheduleTable.vue'
@@ -50,7 +59,14 @@ import AppSection from '@/components/Section/AppSection.vue'
 import TheSlider from '@/components/Slider/TheSlider.vue'
 import NewVideos from '@/components/Videos/NewVideos.vue'
 import { RouteNames } from '@/router'
-import type { Anime, Genre, ScheduleNow, SliderAnime, Video } from '@/types/anilibria.types'
+import type {
+  Anime,
+  Franchise,
+  Genre,
+  ScheduleNow,
+  SliderAnime,
+  Video,
+} from '@/types/anilibria.types'
 import { onMounted, ref } from 'vue'
 
 const sliderData = ref<SliderAnime[] | null>(null)
@@ -62,6 +78,8 @@ const scheduleDay = ref<'today' | 'tomorrow' | 'yesterday'>('today')
 
 const genres = ref<Genre[] | null>(null)
 
+const franchises = ref<Franchise[] | null>(null)
+
 const newVideos = ref<Video[] | null>(null)
 
 onMounted(async () => {
@@ -71,12 +89,13 @@ onMounted(async () => {
     loadSchedule('now'),
     loadNewVideos(4),
     loadGenres(6),
+    loadFranchises(3),
   ])
-  // await new Promise((resolve) => setTimeout(resolve, 1000))
   if (data[0]) sliderData.value = data[0]
   if (data[1]) newEpisodesData.value = data[1]
   if (data[2]) schedule.value = data[2]
   if (data[3]) newVideos.value = data[3]
   if (data[4]) genres.value = data[4]
+  if (data[5]) franchises.value = data[5]
 })
 </script>

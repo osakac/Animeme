@@ -48,6 +48,7 @@ export interface Anime {
 }
 
 export interface Franchise {
+  id: string
   name: string
   name_english: string
   franchise_releases: FranchiseRelease[]
@@ -56,6 +57,9 @@ export interface Franchise {
   total_duration: string
   total_episodes: number
   total_releases: number
+  image: {
+    preview: string
+  }
 }
 
 export interface FranchiseRelease {

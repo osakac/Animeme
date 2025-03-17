@@ -38,6 +38,15 @@ export async function loadAnimeFranchise(franchiseId: number) {
   }
 }
 
+export async function loadFranchises(limit = 100) {
+  try {
+    const { data } = await taxios.get<Franchise[]>(`/anime/franchises/random?limit=${limit}`)
+    return data
+  } catch (error) {
+    console.log('Ошибка:', error)
+  }
+}
+
 export async function loadAnimeSearch(query: string) {
   try {
     const { data } = await taxios.get<Anime[]>(`/app/search/releases?query=${query}`)
