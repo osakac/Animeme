@@ -93,3 +93,16 @@ export interface ScheduleNow {
 }
 
 export type ScheduleWeek = Schedule[]
+
+export interface Video {
+  id: number
+  comments: number
+  title: string
+  url: string
+  views: number
+  image: {
+    optimized: {
+      preview: string
+    }
+  }
+}
