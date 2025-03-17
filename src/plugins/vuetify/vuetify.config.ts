@@ -38,6 +38,9 @@ const vuetifyConfig: VuetifyOptions = {
       hideDetails: true,
       clearable: true,
     },
+    VCard: {
+      rounded: 'lg',
+    },
   },
 }
 

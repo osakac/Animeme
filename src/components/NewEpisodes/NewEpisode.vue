@@ -9,7 +9,7 @@
           start: onTouchStart,
           end: onTouchEnd,
         }"
-        class="max-w-48 h-72 w-full shrink-0 rounded-xl!"
+        class="max-w-48 h-72 w-full shrink-0"
       >
         <transition name="episode-info">
           <CardContentEpisode v-if="isHovering || isVisible" :anime />

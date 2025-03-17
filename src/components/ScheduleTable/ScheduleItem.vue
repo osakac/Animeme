@@ -8,7 +8,7 @@
           start: onTouchStart,
           end: onTouchEnd,
         }"
-        class="mb-5 rounded-xl!"
+        class="mb-5"
       >
         <template #image>
           <v-img
