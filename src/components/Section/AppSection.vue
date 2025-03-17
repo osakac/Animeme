@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="flex items-center justify-between mb-5">
+    <div class="wrapper mb-5">
       <component :is="tag" :to class="link" :class="{ disabled: !to }">
         <span class="flex items-center">
           <h2 class="text-2xl text-main mr-2">{{ title }}</h2>
@@ -26,6 +26,12 @@ const tag = computed(() => (props.to ? 'router-link' : 'div'))
 </script>
 
 <style scoped>
+@reference 'tailwindcss';
+
+.wrapper {
+  @apply flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between;
+}
+
 .link .v-icon {
   transition: transform 0.3s ease;
 }
