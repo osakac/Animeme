@@ -80,3 +80,16 @@ export interface Member {
   role: { description: string }
   user: { avatar: { optimized: { preview: string } } }
 }
+
+export interface Schedule {
+  new_release_episode_ordinal: 13
+  release: Anime
+}
+
+export interface ScheduleNow {
+  today: Schedule[]
+  tomorrow: Schedule[]
+  yesterday: Schedule[]
+}
+
+export type ScheduleWeek = Schedule[]

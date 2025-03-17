@@ -1,5 +1,6 @@
 import taxios from '@/plugins/axios/axios.config'
 import type { Anime, Franchise, SliderAnime } from '@/types/anilibria.types'
+import type { ScheduleTypeMap } from './types'
 
 export async function loadSliderData() {
   try {
@@ -40,6 +41,15 @@ export async function loadAnimeFranchise(franchiseId: number) {
 export async function loadAnimeSearch(query: string) {
   try {
     const { data } = await taxios.get<Anime[]>(`/app/search/releases?query=${query}`)
+    return data
+  } catch (error) {
+    console.log('Ошибка:', error)
+  }
+}
+
+export async function loadSchedule<T extends keyof ScheduleTypeMap>(period: T) {
+  try {
+    const { data } = await taxios.get<ScheduleTypeMap[T]>(`anime/schedule/${period}`)
     return data
   } catch (error) {
     console.log('Ошибка:', error)
