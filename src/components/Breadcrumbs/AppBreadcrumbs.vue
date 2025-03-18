@@ -20,7 +20,7 @@
 import type { RouteNames } from '@/router'
 
 interface Props {
-  breadcrumbsLinks: { title: string; to: { name: RouteNames } }[]
+  breadcrumbsLinks: { title: string; to?: { name: RouteNames } }[]
 }
 defineProps<Props>()
 </script>

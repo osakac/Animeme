@@ -1,5 +1,5 @@
 <template>
-  <AppBreadcrumbs :breadcrumbs-links="breadcrumbsLinks" v-if="display.smAndUp.value" />
+  <AppBreadcrumbs :breadcrumbs-links="breadcrumbs" v-if="display.smAndUp.value" />
 
   <div v-if="anime">
     <div class="max-w-[950px]">
@@ -135,10 +135,10 @@ const anime = ref<Anime | null>(null)
 const isFavourite = ref(false)
 const onChangeFavourite = () => (isFavourite.value = !isFavourite.value)
 
-const breadcrumbsLinks = computed(() => [
+const breadcrumbs = computed(() => [
   { title: 'Главная страница', to: { name: RouteNames.Home } },
   { title: 'Каталог аниме', to: { name: RouteNames.Catalog } },
-  { title: anime.value?.name.main ?? '', to: { name: RouteNames.Home } },
+  { title: anime.value?.name.main ?? '' },
 ])
 
 const genresCmp = computed(() => anime.value?.genres.map((genre) => genre.name) ?? [])

@@ -1,5 +1,5 @@
 <template>
-  <AppBreadcrumbs :breadcrumbs-links="breadcrumbsLinks" />
+  <AppBreadcrumbs :breadcrumbs-links="breadcrumbs" />
 
   <AppSection title="Новые эпизоды" subtitle="Самые новые и свежие эпизоды в любимой озвучке">
     <div>
@@ -25,9 +25,9 @@ import { RouteNames } from '@/router'
 import type { Anime } from '@/types/anilibria.types'
 import { onMounted, ref, watch } from 'vue'
 
-const breadcrumbsLinks = [
+const breadcrumbs = [
   { title: 'Главная страница', to: { name: RouteNames.Home } },
-  { title: 'Последние релизы', to: { name: RouteNames.Home } },
+  { title: 'Последние релизы' },
 ]
 
 const allEpisodes = ref<Anime[] | null>(null)
