@@ -1,5 +1,5 @@
 <template>
-  <ul class="columns-2 md:columns-3 xl:columns-4">
+  <ul class="columns-1 sm:columns-2 md:columns-3 xl:columns-4">
     <template v-if="!scheduleDay">
       <v-skeleton-loader
         v-for="(_, idx) in 6"
