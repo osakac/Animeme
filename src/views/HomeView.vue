@@ -11,6 +11,7 @@
     </AppSection>
 
     <AppSection
+      :to="{ name: RouteNames.Schedule }"
       title="Расписание релизов"
       subtitle="Список релизов, над которыми команда трудится прямо сейчас"
     >

@@ -44,6 +44,7 @@ export interface Anime {
   genres: AnimeGenre[]
   members: Member[]
   age_rating: { label: string }
+  publish_day: { description: string }
   updated_at: Date
 }
 
