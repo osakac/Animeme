@@ -1,13 +1,17 @@
 <template>
   <div class="inline">
-    <span v-for="item in data" :key="item" class="item">
+    <span v-for="item in items" :key="item" class="item">
       {{ item }}
     </span>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{ data: string[] }>()
+import { computed } from 'vue'
+
+const props = defineProps<{ data: string[] }>()
+
+const items = computed(() => props.data.filter((item) => item))
 </script>
 
 <style scoped>
