@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="absolute top-0 left-0 w-full h-full bg-black/80 py-3 px-3 flex flex-col justify-between items-center"
-  >
+  <div class="h-full bg-black/80 py-3 px-3 flex flex-col justify-between items-center">
     <span class="py-1 px-2 text-sm text-white bg-neutral-700/80 rounded-md">
       {{ anime.latest_episode?.ordinal ?? '??' }} эпизод
     </span>
