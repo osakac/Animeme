@@ -4,7 +4,9 @@
       {{ anime.latest_episode?.ordinal ?? '??' }} эпизод
     </span>
 
-    <h3 class="title max-h-30 overflow-y-scroll text-base/tight font-bold text-center text-white">
+    <h3
+      class="max-h-30 text-base/tight font-bold text-center text-white w-full text-ellipsis line-clamp-6"
+    >
       {{ anime.name.main }}
     </h3>
 
@@ -39,8 +41,4 @@ defineProps<{ anime: Anime }>()
 
 <style scoped>
 @reference "tailwindcss";
-
-.title::-webkit-scrollbar {
-  display: none;
-}
 </style>
