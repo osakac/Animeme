@@ -11,8 +11,8 @@
         }"
         class="max-w-48 h-72 w-full shrink-0"
       >
-        <transition name="episode-info">
-          <CardContentEpisode v-if="isHovering || isVisible" :anime />
+        <transition>
+          <CardContentAnime v-if="isHovering || isVisible" :anime />
         </transition>
       </v-card>
     </template>
@@ -24,7 +24,7 @@ import { useTouchVisible } from '@/composables/useTouchVisible'
 import { RouteNames } from '@/router'
 import type { Anime } from '@/types/anilibria.types'
 import { inject } from 'vue'
-import CardContentEpisode from '../CardContent/CardContentEpisode.vue'
+import CardContentAnime from '../CardContent/CardContentAnime.vue'
 
 defineProps<{ anime: Anime }>()
 const siteUrl = inject('siteUrl')
@@ -33,13 +33,13 @@ const { isVisible, onTouchStart, onTouchEnd } = useTouchVisible()
 </script>
 
 <style scoped>
-.episode-info-enter-active,
-.episode-info-leave-active {
+.v-enter-active,
+.v-leave-active {
   transition: opacity 0.3s ease;
 }
 
-.episode-info-enter-from,
-.episode-info-leave-to {
+.v-enter-from,
+.v-leave-to {
   opacity: 0;
 }
 </style>

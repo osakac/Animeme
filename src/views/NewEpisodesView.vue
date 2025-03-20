@@ -10,15 +10,15 @@
         class="mb-5"
       ></v-text-field>
 
-      <NewEpisodes :episodes="newEpisodes" view="list" />
+      <AnimeList :data="newEpisodes" view="list" />
     </div>
   </AppSection>
 </template>
 
 <script setup lang="ts">
 import { loadNewEpisodes } from '@/api/anilibria.api'
+import AnimeList from '@/components/AnimeList/AnimeList.vue'
 import AppBreadcrumbs from '@/components/Breadcrumbs/AppBreadcrumbs.vue'
-import NewEpisodes from '@/components/NewEpisodes/NewEpisodes.vue'
 import AppSection from '@/components/Section/AppSection.vue'
 import { useSearch } from '@/composables/useSearch'
 import { RouteNames } from '@/router'
@@ -30,8 +30,8 @@ const breadcrumbs = [
   { title: 'Последние релизы' },
 ]
 
-const allEpisodes = ref<Anime[] | null>(null)
-const newEpisodes = ref<Anime[] | null>(null)
+const allEpisodes = ref<Anime[]>([])
+const newEpisodes = ref<Anime[]>([])
 
 const { search } = useSearch(onSearch)
 function onSearch() {

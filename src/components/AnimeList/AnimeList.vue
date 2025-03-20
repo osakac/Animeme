@@ -1,6 +1,6 @@
 <template>
   <ul :class="view">
-    <template v-if="!episodes">
+    <template v-if="!data.length">
       <v-skeleton-loader
         v-for="(_, idx) in 6"
         :key="idx"
@@ -9,15 +9,15 @@
       />
     </template>
 
-    <NewEpisode v-else v-for="anime in episodes" :key="anime.id" :anime />
+    <AnimeItem v-else v-for="anime in data" :key="anime.id" :anime />
   </ul>
 </template>
 
 <script setup lang="ts">
 import type { Anime } from '@/types/anilibria.types'
-import NewEpisode from './NewEpisode.vue'
+import AnimeItem from './AnimeItem.vue'
 
-defineProps<{ episodes: Anime[] | null; view: 'list' | 'linear' }>()
+defineProps<{ data: Anime[]; view: 'list' | 'linear' }>()
 </script>
 
 <style scoped>

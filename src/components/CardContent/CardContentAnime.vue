@@ -1,6 +1,12 @@
 <template>
-  <div class="h-full bg-black/80 py-3 px-3 flex flex-col justify-between items-center">
-    <span class="py-1 px-2 text-sm text-white bg-neutral-700/80 rounded-md">
+  <div
+    class="h-full bg-black/80 py-3 px-3 flex flex-col items-center"
+    :class="{ 'justify-between': anime.latest_episode, 'justify-around': !anime.latest_episode }"
+  >
+    <span
+      v-if="anime.latest_episode"
+      class="py-1 px-2 text-sm text-white bg-neutral-700/80 rounded-md"
+    >
       {{ anime.latest_episode?.ordinal ?? '??' }} эпизод
     </span>
 
@@ -33,12 +39,8 @@
 </template>
 
 <script setup lang="ts">
-import InfoDivider from '@/components/InfoDivider/InfoDivider.vue'
 import type { Anime } from '@/types/anilibria.types'
+import InfoDivider from '../InfoDivider/InfoDivider.vue'
 
 defineProps<{ anime: Anime }>()
 </script>
-
-<style scoped>
-@reference "tailwindcss";
-</style>

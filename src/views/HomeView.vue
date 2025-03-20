@@ -7,7 +7,7 @@
       title="Новые эпизоды"
       subtitle="Самые новые и свежие эпизоды в любимой озвучке"
     >
-      <NewEpisodes :episodes="newEpisodesData" view="linear" />
+      <AnimeList :data="newEpisodesData" view="linear" />
     </AppSection>
 
     <AppSection
@@ -52,9 +52,9 @@ import {
   loadSchedule,
   loadSliderData,
 } from '@/api/anilibria.api'
+import AnimeList from '@/components/AnimeList/AnimeList.vue'
 import FranchisesList from '@/components/Franchises/FranchisesList.vue'
 import GenresList from '@/components/Genres/GenresList.vue'
-import NewEpisodes from '@/components/NewEpisodes/NewEpisodes.vue'
 import ScheduleTable from '@/components/ScheduleTable/ScheduleTable.vue'
 import AppSection from '@/components/Section/AppSection.vue'
 import TheSlider from '@/components/Slider/TheSlider.vue'
@@ -72,7 +72,7 @@ import { onMounted, ref } from 'vue'
 
 const sliderData = ref<SliderAnime[] | null>(null)
 
-const newEpisodesData = ref<Anime[] | null>(null)
+const newEpisodesData = ref<Anime[]>([])
 
 const schedule = ref<ScheduleNow | null>(null)
 const scheduleDay = ref<'today' | 'tomorrow' | 'yesterday'>('today')
