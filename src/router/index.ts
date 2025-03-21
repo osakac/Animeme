@@ -9,6 +9,7 @@ export enum RouteNames {
   Genre = 'genre',
   Franchises = 'franchises',
   Franchise = 'franchise',
+  Videos = 'videos',
 }
 
 const router = createRouter({
@@ -53,6 +54,11 @@ const router = createRouter({
       path: '/franchises/:franchiseId',
       name: RouteNames.Franchise,
       component: () => import('@/views/FranchiseView.vue'),
+    },
+    {
+      path: '/videos',
+      name: RouteNames.Videos,
+      component: () => import('@/views/VideosView.vue'),
     },
   ],
 })

@@ -42,7 +42,11 @@
       <FranchisesList :franchises />
     </AppSection>
 
-    <AppSection title="Новые видео" subtitle="Самые интересные видео ролики от любимой команды">
+    <AppSection
+      :to="{ name: RouteNames.Videos }"
+      title="Новые видео"
+      subtitle="Самые интересные видео ролики от любимой команды"
+    >
       <NewVideos :videos="newVideos" />
     </AppSection>
   </div>
@@ -86,7 +90,7 @@ const genres = ref<Genre[] | null>(null)
 
 const franchises = ref<Franchise[]>()
 
-const newVideos = ref<Video[] | null>(null)
+const newVideos = ref<Video[]>()
 
 onMounted(async () => {
   const data = await Promise.all([
