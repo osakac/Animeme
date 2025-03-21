@@ -3,6 +3,7 @@
     <v-card
       v-for="genre in genres"
       :key="genre.id"
+      :to="{ name: RouteNames.Genre, params: { genreId: genre.id } }"
       :image="`${siteUrl}${genre.image.optimized.preview}`"
       class="max-w-48 h-72 w-full shrink-0"
     >
@@ -12,6 +13,7 @@
 </template>
 
 <script setup lang="ts">
+import { RouteNames } from '@/router'
 import type { Genre } from '@/types/anilibria.types'
 import { inject } from 'vue'
 import CardContentGenre from '../CardContent/CardContentGenre.vue'

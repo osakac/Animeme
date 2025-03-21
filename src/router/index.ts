@@ -5,6 +5,8 @@ export enum RouteNames {
   Anime = 'anime',
   NewEpisodes = 'new-episodes',
   Schedule = 'schedule',
+  Genres = 'genres',
+  Genre = 'genre',
 }
 
 const router = createRouter({
@@ -29,6 +31,16 @@ const router = createRouter({
       path: '/schedule',
       name: RouteNames.Schedule,
       component: () => import('@/views/ScheduleView.vue'),
+    },
+    {
+      path: '/genres',
+      name: RouteNames.Genres,
+      component: () => import('@/views/GenresView.vue'),
+    },
+    {
+      path: '/genres/:genreId',
+      name: RouteNames.Genre,
+      component: () => import('@/views/GenreView.vue'),
     },
   ],
 })

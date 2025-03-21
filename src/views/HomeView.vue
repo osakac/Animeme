@@ -26,7 +26,11 @@
       <ScheduleTable :schedule-day="schedule?.[scheduleDay]" />
     </AppSection>
 
-    <AppSection title="Жанры" subtitle="Список жанров на любой вкус и цвет">
+    <AppSection
+      :to="{ name: RouteNames.Genres }"
+      title="Жанры"
+      subtitle="Список жанров на любой вкус и цвет"
+    >
       <GenresList :genres view="linear" />
     </AppSection>
 
