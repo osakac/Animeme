@@ -17,7 +17,7 @@ import { onMounted, ref } from 'vue'
 
 const breadcrumbs = [
   { title: 'Главная страница', to: { name: RouteNames.Home } },
-  { title: 'Жанры' },
+  { title: 'Жанры', to: { name: RouteNames.Home } },
 ]
 
 const genres = ref<Genre[] | null>(null)

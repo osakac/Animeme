@@ -28,7 +28,7 @@ import { onMounted, ref, watchEffect } from 'vue'
 
 const breadcrumbs = [
   { title: 'Главная страница', to: { name: RouteNames.Home } },
-  { title: 'Расписание релизов' },
+  { title: 'Расписание релизов', to: { name: RouteNames.Home } },
 ]
 
 const weekDays = [
@@ -50,7 +50,7 @@ function onSearch() {
   }
 
   selectedSchedule.value = schedule.value?.[day.value].filter((schedule) =>
-    schedule.release.name.main.toLowerCase().includes(search.value?.toLowerCase() ?? ''),
+    schedule.release.name.main.toLowerCase().includes(search.value.toLowerCase()),
   )
 }
 

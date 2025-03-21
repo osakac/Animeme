@@ -138,7 +138,7 @@ const onChangeFavourite = () => (isFavourite.value = !isFavourite.value)
 const breadcrumbs = computed(() => [
   { title: 'Главная страница', to: { name: RouteNames.Home } },
   { title: 'Каталог аниме', to: { name: RouteNames.Catalog } },
-  { title: anime.value?.name.main ?? '' },
+  { title: anime.value?.name.main ?? '', to: { name: RouteNames.Home } },
 ])
 
 const genresCmp = computed(() => anime.value?.genres.map((genre) => genre.name) ?? [])

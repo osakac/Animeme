@@ -27,7 +27,7 @@ import { onMounted, ref, watch } from 'vue'
 
 const breadcrumbs = [
   { title: 'Главная страница', to: { name: RouteNames.Home } },
-  { title: 'Последние релизы' },
+  { title: 'Последние релизы', to: { name: RouteNames.Home } },
 ]
 
 const allEpisodes = ref<Anime[]>([])

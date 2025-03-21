@@ -45,7 +45,7 @@ const siteUrl = inject('siteUrl')
 const breadcrumbs = computed(() => [
   { title: 'Главная страница', to: { name: RouteNames.Home } },
   { title: 'Жанры', to: { name: RouteNames.Genres } },
-  { title: genreInfo.value?.name ?? '' },
+  { title: genreInfo.value?.name ?? '', to: { name: RouteNames.Home } },
 ])
 
 const genreInfo = ref<Genre>()
