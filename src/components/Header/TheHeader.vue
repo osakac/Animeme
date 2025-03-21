@@ -9,16 +9,24 @@
           <nav v-if="display.width.value >= 800">
             <ul class="flex gap-6 list-none text-main">
               <li>
-                <router-link to="/catalog">Релизы</router-link>
+                <router-link :to="{ name: RouteNames.Catalog }" active-class="active">
+                  Релизы
+                </router-link>
               </li>
               <li>
-                <router-link to="/schedule">Расписание</router-link>
+                <router-link :to="{ name: RouteNames.Schedule }" active-class="active">
+                  Расписание
+                </router-link>
               </li>
               <li>
-                <router-link to="/franchises">Франшизы</router-link>
+                <router-link :to="{ name: RouteNames.Franchises }" active-class="active">
+                  Франшизы
+                </router-link>
               </li>
               <li>
-                <router-link to="/genres">Жанры</router-link>
+                <router-link :to="{ name: RouteNames.Genres }" active-class="active">
+                  Жанры
+                </router-link>
               </li>
             </ul>
           </nav>
@@ -79,6 +87,7 @@
 </template>
 
 <script setup lang="ts">
+import { RouteNames } from '@/router'
 import { ref } from 'vue'
 import { useDisplay } from 'vuetify'
 import TheSearch from '../Search/TheSearch.vue'
@@ -109,6 +118,9 @@ nav {
   a:hover {
     color: rgb(var(--v-theme-accent));
   }
+}
+.active {
+  color: rgb(var(--v-theme-accent));
 }
 
 .v-btn:hover {

@@ -15,17 +15,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { RouteNames } from '@/router'
 
 const isVisible = defineModel<boolean>()
 const onClickOutside = () => (isVisible.value = false)
 
-const navLinks = ref([
-  { title: 'Релизы', to: '/catalog' },
-  { title: 'Расписание', to: '/schedule' },
-  { title: 'Франшизы', to: '/franchises' },
-  { title: 'Жанры', to: '/genres' },
-])
+const navLinks = [
+  { title: 'Релизы', to: RouteNames.Catalog },
+  { title: 'Расписание', to: RouteNames.Schedule },
+  { title: 'Франшизы', to: RouteNames.Franchises },
+  { title: 'Жанры', to: RouteNames.Genres },
+]
 </script>
 
 <style scoped>
