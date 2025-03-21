@@ -47,6 +47,15 @@ export async function loadFranchises(limit = 100) {
   }
 }
 
+export async function loadFranchise(franchiseId: string) {
+  try {
+    const { data } = await taxios.get<Franchise>(`/anime/franchises/${franchiseId}`)
+    return data
+  } catch (error) {
+    console.log('Ошибка:', error)
+  }
+}
+
 export async function loadAnimeSearch(query: string) {
   try {
     const { data } = await taxios.get<Anime[]>(`/app/search/releases?query=${query}`)

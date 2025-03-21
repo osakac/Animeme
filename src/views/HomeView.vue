@@ -35,6 +35,7 @@
     </AppSection>
 
     <AppSection
+      :to="{ name: RouteNames.Franchises }"
       title="Франшизы"
       subtitle="Самые интересные и захватывающие франшизы в любимой озвучке"
     >
@@ -83,7 +84,7 @@ const scheduleDay = ref<'today' | 'tomorrow' | 'yesterday'>('today')
 
 const genres = ref<Genre[] | null>(null)
 
-const franchises = ref<Franchise[] | null>(null)
+const franchises = ref<Franchise[]>()
 
 const newVideos = ref<Video[] | null>(null)
 

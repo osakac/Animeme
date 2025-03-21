@@ -7,6 +7,8 @@ export enum RouteNames {
   Schedule = 'schedule',
   Genres = 'genres',
   Genre = 'genre',
+  Franchises = 'franchises',
+  Franchise = 'franchise',
 }
 
 const router = createRouter({
@@ -41,6 +43,16 @@ const router = createRouter({
       path: '/genres/:genreId',
       name: RouteNames.Genre,
       component: () => import('@/views/GenreView.vue'),
+    },
+    {
+      path: '/franchises',
+      name: RouteNames.Franchises,
+      component: () => import('@/views/FranchisesView.vue'),
+    },
+    {
+      path: '/franchises/:franchiseId',
+      name: RouteNames.Franchise,
+      component: () => import('@/views/FranchiseView.vue'),
     },
   ],
 })
