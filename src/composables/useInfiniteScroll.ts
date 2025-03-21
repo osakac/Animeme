@@ -1,5 +1,5 @@
 import taxios from '@/plugins/axios/axios.config'
-import { onBeforeUnmount, onMounted, ref, type ShallowRef } from 'vue'
+import { onBeforeUnmount, onMounted, ref, type Ref, type ShallowRef } from 'vue'
 
 interface Meta {
   pagination: {
@@ -10,6 +10,7 @@ interface Meta {
 export function useInfiniteScroll<T>(
   url: string,
   observerTarget: Readonly<ShallowRef<HTMLDivElement | null>>,
+  searchValue: Ref<string>,
 ) {
   const data = ref<T[]>([])
   const page = ref(1)
@@ -18,7 +19,7 @@ export function useInfiniteScroll<T>(
   let observer: IntersectionObserver
 
   const loadData = async () => {
-    if (loading.value || page.value > totalPages.value) return
+    if (loading.value || page.value > totalPages.value || searchValue.value) return
 
     loading.value = true
 
