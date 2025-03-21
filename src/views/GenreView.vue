@@ -29,14 +29,15 @@
 </template>
 
 <script setup lang="ts">
-import { loadGenre, loadReleasesOfGenre } from '@/api/anilibria.api'
+import { loadGenre } from '@/api/anilibria.api'
 import AnimeList from '@/components/AnimeList/AnimeList.vue'
 import AppBreadcrumbs from '@/components/Breadcrumbs/AppBreadcrumbs.vue'
 import AppSection from '@/components/Section/AppSection.vue'
+import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
 import { pluralizeReleases } from '@/helpers/pluralize'
 import { RouteNames } from '@/router'
 import type { Anime, Genre } from '@/types/anilibria.types'
-import { computed, inject, onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue'
+import { computed, inject, onMounted, ref, useTemplateRef } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
@@ -50,55 +51,16 @@ const breadcrumbs = computed(() => [
 
 const genreInfo = ref<Genre>()
 
-const releases = ref<Anime[]>([])
-const page = ref(1)
-const totalPages = ref()
-const loading = ref(false)
-
-const loadData = async () => {
-  if (page.value >= totalPages.value || loading.value) return
-
-  loading.value = true
-  const releasesData = await loadReleasesOfGenre(+route.params.genreId, page.value)
-  if (releasesData) {
-    releases.value = [...releases.value, ...releasesData.data]
-    page.value++
-  }
-  loading.value = false
-}
-
-let observer: IntersectionObserver
 const observerTarget = useTemplateRef('observerTarget')
-const initObserver = () => {
-  observer = new IntersectionObserver(
-    (entries) => {
-      if (entries[0].isIntersecting) {
-        loadData()
-      }
-    },
-    {
-      root: null,
-      rootMargin: '100px',
-      threshold: 0.1,
-    },
-  )
 
-  if (observerTarget.value) {
-    observer.observe(observerTarget.value)
-  }
-}
+const { data: releases } = useInfiniteScroll<Anime>(
+  `/anime/genres/${route.params.genreId}/releases`,
+  observerTarget,
+)
 
 onMounted(async () => {
   const genreId = +route.params.genreId
   const genreData = await loadGenre(genreId)
   if (genreData) genreInfo.value = genreData
-
-  initObserver()
-})
-
-onBeforeUnmount(() => {
-  if (observer) {
-    observer.disconnect()
-  }
 })
 </script>
