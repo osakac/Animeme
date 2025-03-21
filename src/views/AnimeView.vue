@@ -95,7 +95,7 @@
 
       <v-tabs-window v-model="activeTab">
         <v-tabs-window-item value="episodes">
-          <AnimeInfoEpisodes :episodes="anime.episodes" />
+          <AnimeInfoEpisodes :episodes="anime.episodes" :key="activeTab" />
         </v-tabs-window-item>
         <v-tabs-window-item value="franchise">
           <AnimeInfoFranchise :franchise-id="anime.id" />
@@ -123,7 +123,7 @@ import { getTotalWatchTime } from '@/helpers/getTotalWatchTime'
 import { getWeekday } from '@/helpers/getWeekday'
 import { RouteNames } from '@/router'
 import type { Anime } from '@/types/anilibria.types'
-import { computed, inject, ref, watch } from 'vue'
+import { computed, inject, ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { useDisplay } from 'vuetify'
 
@@ -148,7 +148,7 @@ const animeInfo = computed(() => ({
   Сезон: anime.value?.season.description,
   Год: anime.value?.year,
   Жанры: genresCmp.value,
-  'Всего эпизодов': anime.value?.episodes_total,
+  'Всего эпизодов': anime.value?.episodes_total ?? 'Неизвестно',
   'Общее время просмотра': getTotalWatchTimeCmp.value,
 }))
 const getWeekdayCmp = computed(() => anime.value && getWeekday(anime.value.updated_at))
@@ -179,14 +179,10 @@ const animeContentTop = computed(() => {
   return 130
 })
 
-watch(
-  () => route.params.animeAlias,
-  async () => {
-    const data = await loadAnimeInfo(route.params.animeAlias as string)
-    if (data) anime.value = data
-  },
-  { immediate: true },
-)
+watchEffect(async () => {
+  const data = await loadAnimeInfo(route.params.animeAlias.toString())
+  if (data) anime.value = data
+})
 </script>
 
 <style scoped>
