@@ -4,6 +4,7 @@ export enum RouteNames {
   Home = 'home',
   Anime = 'anime',
   NewEpisodes = 'new-episodes',
+  Schedule = 'schedule',
 }
 
 const router = createRouter({
@@ -23,6 +24,11 @@ const router = createRouter({
       path: '/new-episodes',
       name: RouteNames.NewEpisodes,
       component: () => import('@/views/NewEpisodesView.vue'),
+    },
+    {
+      path: '/schedule',
+      name: RouteNames.Schedule,
+      component: () => import('@/views/ScheduleView.vue'),
     },
   ],
 })
