@@ -41,6 +41,11 @@ const vuetifyConfig: VuetifyOptions = {
     VCard: {
       rounded: 'lg',
     },
+    VAutocomplete: {
+      variant: 'solo-filled',
+      hideDetails: true,
+      clearable: true,
+    },
   },
 }
 
