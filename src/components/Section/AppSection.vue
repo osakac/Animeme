@@ -4,7 +4,7 @@
       <component :is="tag" :to class="link" :class="{ disabled: !to }">
         <span class="flex items-center">
           <h2 class="text-2xl text-main mr-2">{{ title }}</h2>
-          <v-icon icon="fa-solid fa-chevron-right" size="x-small" color="text-main" />
+          <v-icon v-if="to" icon="fa-solid fa-chevron-right" size="x-small" color="text-main" />
         </span>
         <p class="text-secondary-deep">{{ subtitle }}</p>
       </component>
