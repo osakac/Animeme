@@ -53,10 +53,8 @@ const genreInfo = ref<Genre>()
 
 const observerTarget = useTemplateRef('observerTarget')
 
-const { data: releases } = useInfiniteScroll<Anime>(
-  `/anime/genres/${route.params.genreId}/releases`,
-  observerTarget,
-)
+const url = computed(() => `/anime/genres/${route.params.genreId}/releases?`)
+const { data: releases } = useInfiniteScroll<Anime>(url, observerTarget)
 
 onMounted(async () => {
   const genreId = +route.params.genreId
