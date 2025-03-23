@@ -1,6 +1,6 @@
 import taxios from '@/plugins/axios/axios.config'
 import type { Anime, Franchise, Genre, SliderAnime, Video } from '@/types/anilibria.types'
-import type { ReleaseOfGenreResponse, ScheduleTypeMap } from './types'
+import type { AnimeMetaResponse, ScheduleTypeMap } from './types'
 
 export async function loadSliderData() {
   try {
@@ -103,7 +103,7 @@ export async function loadGenre(genreId: number) {
 
 export async function loadReleasesOfGenre(genreId: number, page: number) {
   try {
-    const { data } = await taxios.get<ReleaseOfGenreResponse>(
+    const { data } = await taxios.get<AnimeMetaResponse>(
       `/anime/genres/${genreId}/releases?page=${page}`,
     )
     return data

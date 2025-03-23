@@ -5,13 +5,15 @@ export interface ScheduleTypeMap {
   week: ScheduleWeek
 }
 
-export interface ReleaseOfGenreResponse {
+export interface AnimeMetaResponse {
   data: Anime[]
-  meta: {
-    pagination: {
-      total_pages: number
-      current_page: number
-      total: number
-    }
+  meta: Meta
+}
+
+export interface Meta {
+  pagination: {
+    total_pages: number
+    current_page: number
+    total: number
   }
 }
