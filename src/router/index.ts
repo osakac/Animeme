@@ -10,6 +10,7 @@ export enum RouteNames {
   Franchises = 'franchises',
   Franchise = 'franchise',
   Videos = 'videos',
+  Catalog = 'catalog',
 }
 
 const router = createRouter({
@@ -24,6 +25,11 @@ const router = createRouter({
       path: '/anime/:animeAlias',
       name: RouteNames.Anime,
       component: () => import('@/views/AnimeView.vue'),
+    },
+    {
+      path: '/catalog',
+      name: RouteNames.Catalog,
+      component: () => import('@/views/CatalogView.vue'),
     },
     {
       path: '/new-episodes',
