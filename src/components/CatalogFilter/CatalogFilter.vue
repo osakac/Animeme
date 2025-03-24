@@ -1,16 +1,13 @@
 <template>
-  <div :class="{ 'side-filter': display.width.value < 1024 }">
+  <div :class="{ 'side-filter': isMobile }">
     <div
       v-click-outside="onCloseFilter"
       :class="{
-        'inner-filter': display.width.value < 1024,
-        'w-[400px]': display.width.value > 1024,
+        'inner-filter': isMobile,
+        'w-[400px]': !isMobile,
       }"
     >
-      <v-sheet
-        class="max-w-[400px] w-full mb-3"
-        :class="{ 'rounded-xl!': display.width.value > 1024 }"
-      >
+      <v-sheet class="max-w-[400px] w-full mb-3" :class="{ 'rounded-xl!': !isMobile }">
         <AppSection
           title="Жанры"
           subtitle="Укажите жанры, по которым будут отфильтрованы все наши релизы. При выборе нескольких — будет использована комбинация"
@@ -114,7 +111,7 @@
           </div>
         </AppSection>
 
-        <template v-if="display.width.value < 1024">
+        <template v-if="isMobile">
           <v-divider class="my-1"></v-divider>
 
           <div class="flex gap-2 px-5 py-3 pb-5">
@@ -141,13 +138,14 @@
 <script setup lang="ts">
 import { loadGenres } from '@/api/anilibria.api'
 import type { Genre } from '@/types/anilibria.types'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useDisplay } from 'vuetify'
 import AppSection from '../Section/AppSection.vue'
 
 const display = useDisplay()
+const isMobile = computed(() => display.width.value < 1024)
 const onCloseFilter = (event: Event) => {
-  if (display.width.value > 1024) return
+  if (!isMobile.value) return
 
   const target = event.target as HTMLElement
   if (target.closest('.v-autocomplete') || target.closest('.v-menu') || target.closest('button'))
