@@ -2,20 +2,28 @@
   <AppBreadcrumbs :breadcrumbs-links="breadcrumbs" />
 
   <AppSection title="Каталог релизов" subtitle="Самые новые и свежие эпизоды в любимой озвучке">
-    <!-- <v-text-field v-model="search" @click:clear="search = ''" placeholder="Поиск..." class="mb-5" /> -->
-    <v-text-field
-      @input="onChangeSearch($event.target.value)"
-      @click:clear="onChangeSearch('')"
-      placeholder="Поиск..."
-      class="mb-5"
-    />
+    <div class="h-[56px] flex gap-5 mb-5">
+      <v-text-field
+        @input="onChangeSearch($event.target.value)"
+        @click:clear="onChangeSearch('')"
+        placeholder="Поиск..."
+      />
+      <v-btn @click="isFilterOpen = !isFilterOpen" variant="tonal" class="h-full!">
+        <v-icon>fa-solid fa-filter</v-icon>
+      </v-btn>
+    </div>
 
     <div class="flex gap-5">
-      <div class="w-full">
-        <CatalogList v-if="releases" :releases />
+      <div>
+        <CatalogList v-if="releases.length" :releases />
         <div ref="observerTarget"></div>
       </div>
-      <CatalogFilter @apply-filter="onApplyFilter" @reset-filter="onResetFilter" />
+      <CatalogFilter
+        v-show="isFilterOpen"
+        @apply-filter="onApplyFilter"
+        @reset-filter="onResetFilter"
+        @close-filter="isFilterOpen = false"
+      />
     </div>
   </AppSection>
 
@@ -34,6 +42,7 @@ import { debounce } from '@/helpers/debounce'
 import { RouteNames } from '@/router'
 import type { Anime } from '@/types/anilibria.types'
 import { computed, onMounted, onUnmounted, ref, useTemplateRef } from 'vue'
+import { useDisplay } from 'vuetify'
 
 const breadcrumbs = [
   { title: 'Главная страница', to: { name: RouteNames.Home } },
@@ -46,6 +55,8 @@ const search = ref('')
 const debounceSearch = debounce((value: string) => (search.value = value), 500)
 const onChangeSearch = (value: string) => debounceSearch(null, value)
 
+const display = useDisplay()
+const isFilterOpen = ref(display.width.value > 1024)
 const filter = ref<Filter>({
   genres: [],
   types: [],

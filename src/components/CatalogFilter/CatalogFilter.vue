@@ -1,118 +1,140 @@
 <template>
-  <div>
-    <v-sheet class="max-w-[400px] w-full rounded-xl! mb-3">
-      <AppSection
-        title="Жанры"
-        subtitle="Укажите жанры, по которым будут отфильтрованы все наши релизы. При выборе нескольких — будет использована комбинация"
-        class="px-5 py-3 text-sm"
+  <div :class="{ 'side-filter': display.width.value < 1024 }">
+    <div
+      v-click-outside="onCloseFilter"
+      :class="{
+        'inner-filter': display.width.value < 1024,
+        'w-[400px]': display.width.value > 1024,
+      }"
+    >
+      <v-sheet
+        class="max-w-[400px] w-full mb-3"
+        :class="{ 'rounded-xl!': display.width.value > 1024 }"
       >
-        <v-autocomplete
-          v-model="selectedGenres"
-          :items="genres"
-          item-title="name"
-          item-value="id"
-          label="Жанры"
-          multiple
-          chips
-        ></v-autocomplete>
-      </AppSection>
-
-      <v-divider class="my-1"></v-divider>
-
-      <AppSection
-        title="Тип"
-        subtitle="Укажите типы релизов, по которым будут отфильтрованы все релизы"
-        class="px-5 py-3 text-sm"
-      >
-        <div class="flex flex-wrap gap-2">
-          <v-btn
-            v-for="type in types"
-            :key="type.value"
-            variant="tonal"
-            @click="onChangeType(type)"
-            :class="{ 'bg-accent': type.active }"
-          >
-            {{ type.title }}
-          </v-btn>
-        </div>
-      </AppSection>
-
-      <v-divider class="my-1"></v-divider>
-
-      <AppSection
-        title="Статус выхода"
-        subtitle="Укажите желаемые статусы выхода релиза, по которым будут отфильтрованы все тайтлы в каталоге"
-        class="px-5 py-3 text-sm"
-      >
-        <div class="flex gap-2">
-          <v-btn
-            v-for="status in statuses"
-            :key="status.value"
-            variant="tonal"
-            @click="onChangeStatus(status)"
-            :class="{ 'bg-accent': status.active }"
-          >
-            {{ status.title }}
-          </v-btn>
-        </div>
-      </AppSection>
-
-      <v-divider class="my-1"></v-divider>
-
-      <AppSection
-        title="Сортировка"
-        subtitle="Укажите способ сортировки для отображения всех тайтлов в каталоге"
-        class="px-5 py-3 text-sm"
-      >
-        <v-autocomplete
-          v-model="selectedSort"
-          :items="sortItems"
-          :menu-props="{ closeOnContentClick: true }"
-          item-title="info.title"
-          item-value="id"
-          label="Сортировка"
-          chips
+        <AppSection
+          title="Жанры"
+          subtitle="Укажите жанры, по которым будут отфильтрованы все наши релизы. При выборе нескольких — будет использована комбинация"
+          class="px-5 py-3 text-sm"
         >
-          <template #item="{ item }">
-            <v-list-item @click="selectedSort = item.raw.id">
-              <v-list-item-title class="text-sm!">{{ item.raw.info.title }}</v-list-item-title>
-              <v-list-item-subtitle class="text-xs!">
-                {{ item.raw.info.subtitle }}
-              </v-list-item-subtitle>
-            </v-list-item>
-          </template>
-        </v-autocomplete>
-      </AppSection>
+          <v-autocomplete
+            v-model="selectedGenres"
+            :items="genres"
+            item-title="name"
+            item-value="id"
+            label="Жанры"
+            multiple
+            chips
+          ></v-autocomplete>
+        </AppSection>
 
-      <v-divider class="my-1"></v-divider>
+        <v-divider class="my-1"></v-divider>
 
-      <AppSection
-        title="Сезоны"
-        subtitle="Укажите желаемые сезоны выхода релизов, по которым будут отфильтрованы все тайтлы в каталоге"
-        class="px-5 py-3 text-sm"
-      >
-        <div class="flex gap-2">
-          <v-btn
-            v-for="season in seasons"
-            :key="season.value"
-            variant="tonal"
-            @click="onChangeSeason(season)"
-            :class="{ 'bg-accent': season.active }"
-          >
-            {{ season.title }}
-          </v-btn>
-        </div>
-      </AppSection>
-    </v-sheet>
-
-    <v-sheet class="rounded-xl! py-2 px-5">
-      <div class="flex gap-2">
-        <v-btn color="rgb(var(--v-theme-accent))" class="flex-1" @click="onApplyFilter"
-          >Применить</v-btn
+        <AppSection
+          title="Тип"
+          subtitle="Укажите типы релизов, по которым будут отфильтрованы все релизы"
+          class="px-5 py-3 text-sm"
         >
-        <v-btn variant="tonal" class="flex-1" @click="onResetFilter">Сбросить</v-btn>
-      </div>
-    </v-sheet>
+          <div class="flex flex-wrap gap-2">
+            <v-btn
+              v-for="type in types"
+              :key="type.value"
+              variant="tonal"
+              @click="onChangeType(type)"
+              :class="{ 'bg-accent': type.active }"
+            >
+              {{ type.title }}
+            </v-btn>
+          </div>
+        </AppSection>
+
+        <v-divider class="my-1"></v-divider>
+
+        <AppSection
+          title="Статус выхода"
+          subtitle="Укажите желаемые статусы выхода релиза, по которым будут отфильтрованы все тайтлы в каталоге"
+          class="px-5 py-3 text-sm"
+        >
+          <div class="flex gap-2">
+            <v-btn
+              v-for="status in statuses"
+              :key="status.value"
+              variant="tonal"
+              @click="onChangeStatus(status)"
+              :class="{ 'bg-accent': status.active }"
+            >
+              {{ status.title }}
+            </v-btn>
+          </div>
+        </AppSection>
+
+        <v-divider class="my-1"></v-divider>
+
+        <AppSection
+          title="Сортировка"
+          subtitle="Укажите способ сортировки для отображения всех тайтлов в каталоге"
+          class="px-5 py-3 text-sm"
+        >
+          <v-autocomplete
+            v-model="selectedSort"
+            :items="sortItems"
+            :menu-props="{ closeOnContentClick: true }"
+            item-title="info.title"
+            item-value="id"
+            label="Сортировка"
+            chips
+          >
+            <template #item="{ item }">
+              <v-list-item @click="selectedSort = item.raw.id">
+                <v-list-item-title class="text-sm!">{{ item.raw.info.title }}</v-list-item-title>
+                <v-list-item-subtitle class="text-xs!">
+                  {{ item.raw.info.subtitle }}
+                </v-list-item-subtitle>
+              </v-list-item>
+            </template>
+          </v-autocomplete>
+        </AppSection>
+
+        <v-divider class="my-1"></v-divider>
+
+        <AppSection
+          title="Сезоны"
+          subtitle="Укажите желаемые сезоны выхода релизов, по которым будут отфильтрованы все тайтлы в каталоге"
+          class="px-5 py-3 text-sm"
+        >
+          <div class="flex flex-wrap gap-2">
+            <v-btn
+              v-for="season in seasons"
+              :key="season.value"
+              variant="tonal"
+              @click="onChangeSeason(season)"
+              :class="{ 'bg-accent': season.active }"
+            >
+              {{ season.title }}
+            </v-btn>
+          </div>
+        </AppSection>
+
+        <template v-if="display.width.value < 1024">
+          <v-divider class="my-1"></v-divider>
+
+          <div class="flex gap-2 px-5 py-3 pb-5">
+            <v-btn color="rgb(var(--v-theme-accent))" class="flex-1" @click="onApplyFilter">
+              Применить
+            </v-btn>
+            <v-btn variant="tonal" class="flex-1" @click="onResetFilter">Сбросить</v-btn>
+          </div>
+        </template>
+      </v-sheet>
+
+      <v-sheet class="rounded-xl! py-2 px-5">
+        <div class="flex gap-2">
+          <v-btn color="rgb(var(--v-theme-accent))" class="flex-1" @click="onApplyFilter">
+            Применить
+          </v-btn>
+          <v-btn variant="tonal" class="flex-1" @click="onResetFilter">Сбросить</v-btn>
+        </div>
+      </v-sheet>
+    </div>
   </div>
 </template>
 
@@ -120,7 +142,19 @@
 import { loadGenres } from '@/api/anilibria.api'
 import type { Genre } from '@/types/anilibria.types'
 import { onMounted, ref } from 'vue'
+import { useDisplay } from 'vuetify'
 import AppSection from '../Section/AppSection.vue'
+
+const display = useDisplay()
+const onCloseFilter = (event: Event) => {
+  if (display.width.value > 1024) return
+
+  const target = event.target as HTMLElement
+  if (target.closest('.v-autocomplete') || target.closest('.v-menu') || target.closest('button'))
+    return
+
+  emit('closeFilter')
+}
 
 export interface Filter {
   genres: string[]
@@ -133,6 +167,7 @@ export interface Filter {
 const emit = defineEmits<{
   (e: 'applyFilter', filter: Filter): void
   (e: 'resetFilter'): void
+  (e: 'closeFilter'): void
 }>()
 
 const selectedGenres = ref<string[]>([])
@@ -257,6 +292,8 @@ const onApplyFilter = () => {
     sort: selectedSort.value,
     seasons: selectedSeasons.value,
   })
+
+  if (display.width.value < 1024) emit('closeFilter')
 }
 
 const onResetFilter = () => {
@@ -266,6 +303,8 @@ const onResetFilter = () => {
   resetTypes()
   resetStatuses()
   resetSeasons()
+
+  if (display.width.value < 1024) emit('closeFilter')
 }
 
 onMounted(async () => {
@@ -273,3 +312,15 @@ onMounted(async () => {
   if (data) genres.value = data
 })
 </script>
+
+<style scoped>
+@reference "tailwindcss";
+
+.side-filter {
+  @apply fixed top-0 left-0 w-full h-full bg-black/50 z-50 flex justify-end mt-[68px];
+}
+
+.inner-filter {
+  @apply overflow-y-scroll max-w-[300px];
+}
+</style>
