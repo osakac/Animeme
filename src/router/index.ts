@@ -11,6 +11,7 @@ export enum RouteNames {
   Franchise = 'franchise',
   Videos = 'videos',
   Catalog = 'catalog',
+  NotFound = 'not-found',
 }
 
 const router = createRouter({
@@ -65,6 +66,11 @@ const router = createRouter({
       path: '/videos',
       name: RouteNames.Videos,
       component: () => import('@/views/VideosView.vue'),
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: RouteNames.NotFound,
+      component: () => import('@/views/NotFoundView.vue'),
     },
   ],
 })
