@@ -14,11 +14,11 @@
 
           <div>
             <div class="mb-2">
-              <h3 class="font-bold text-lg/tight">{{ anime.name.main }}</h3>
-              <span class="text-secondary-deep text-sm/tight">{{ anime.name.english }}</span>
+              <h3 class="font-bold text-main-100 text-lg/tight">{{ anime.name.main }}</h3>
+              <span class="text-main-300 text-sm/tight">{{ anime.name.english }}</span>
             </div>
 
-            <div class="flex flex-col text-sm/tight text-secondary-deep mb-2">
+            <div class="flex flex-col text-sm/tight text-main-300 mb-2">
               <InfoDivider :data="anime.genres.slice(0, 2).map((genre) => genre.name)" />
 
               <InfoDivider
@@ -31,7 +31,7 @@
               />
             </div>
 
-            <p class="text-secondary line-clamp-4">{{ anime.description }}</p>
+            <p class="text-main-200 line-clamp-4">{{ anime.description }}</p>
           </div>
         </v-list-item>
         <v-divider v-if="index !== releases.length - 1" class="my-4" />
