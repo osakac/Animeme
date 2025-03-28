@@ -13,13 +13,13 @@
             ></v-img>
           </template>
 
-          <v-list-item-title class="font-bold! text-xl! mb-1">{{
-            franchise.name
-          }}</v-list-item-title>
-          <v-list-item-subtitle class="text-secondary">
+          <v-list-item-title class="text-main-100 font-bold! text-xl! mb-1">
+            {{ franchise.name }}
+          </v-list-item-title>
+          <v-list-item-subtitle class="text-main-200">
             {{ franchise.name_english }}
           </v-list-item-subtitle>
-          <v-list-item-subtitle class="text-secondary">
+          <v-list-item-subtitle class="text-main-200">
             <InfoDivider
               :data="[
                 `${franchise.first_year.toString()} — ${franchise.last_year.toString()}`,
@@ -50,13 +50,13 @@
             />
           </template>
 
-          <v-list-item-title class="mb-1">
+          <v-list-item-title class="text-main-100 mb-1">
             {{ franchise.release.name.main }}
           </v-list-item-title>
-          <v-list-item-subtitle class="text-secondary">
+          <v-list-item-subtitle class="text-main-200">
             {{ franchise.release.name.english }}
           </v-list-item-subtitle>
-          <v-list-item-subtitle class="text-secondary">
+          <v-list-item-subtitle class="text-main-200">
             <InfoDivider
               :data="[
                 franchise.release.year.toString(),
@@ -69,7 +69,7 @@
           </v-list-item-subtitle>
 
           <template #append>
-            <span class="text-3xl text-secondary-deep">#{{ franchise.sort_order }}</span>
+            <span class="text-3xl text-main-300">#{{ franchise.sort_order }}</span>
           </template>
         </v-list-item>
       </v-list>

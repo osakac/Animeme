@@ -2,10 +2,12 @@
   <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
     <v-card v-for="video in videos" :key="video.id" @click="openVideo(video.url)">
       <v-img :src="`${siteUrl}${video.image.optimized.preview}`"></v-img>
-      <v-card-title class="h-[55px] text-lg/tight! text-ellipsis line-clamp-2! text-wrap mb-1">
+      <v-card-title
+        class="h-[55px] text-main-100 text-lg/tight! text-ellipsis line-clamp-2! text-wrap mb-1"
+      >
         {{ video.title }}
       </v-card-title>
-      <v-card-text class="flex items-center gap-3 text-secondary-deep">
+      <v-card-text class="flex items-center gap-3 text-grey-deep">
         <span class="flex items-center gap-1">
           <v-icon size="x-small" icon="fa-solid fa-comment" />
           {{ video.comments }}

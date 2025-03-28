@@ -25,13 +25,13 @@
             anime.type.description,
             anime.age_rating.label,
           ]"
-          class="text-secondary--static text-xs"
+          class="text-grey text-xs"
         />
       </div>
       <div class="flex">
         <InfoDivider
           :data="anime.genres.slice(0, 2).map((genre) => genre.name)"
-          class="text-secondary-deep--static text-xs"
+          class="text-grey-deep text-xs"
         />
       </div>
     </div>

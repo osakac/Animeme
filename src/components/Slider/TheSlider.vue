@@ -29,18 +29,18 @@
                 pluralizeEpisodes(item.release.episodes_total),
                 item.release.age_rating.label,
               ]"
-              class="text-secondary text-sm"
+              class="text-grey text-sm"
             />
           </div>
           <div class="flex">
             <InfoDivider
               :data="item.release.genres.map((genre) => genre.name)"
-              class="text-secondary-deep text-sm"
+              class="text-grey-deep text-sm"
             />
           </div>
         </div>
         <p
-          class="description max-w-[600px] max-h-18 hidden lg:block overflow-y-scroll text-sm text-secondary--static"
+          class="description max-w-[600px] max-h-18 hidden lg:block overflow-y-scroll text-sm text-grey"
         >
           {{ item.description }}
         </p>

@@ -9,9 +9,9 @@
       <div class="h-full grid grid-cols-2">
         <v-img :src="`${siteUrl}${franchise.image.preview}`" cover />
         <div class="px-4 py-3 flex flex-col justify-between gap-5">
-          <h3 class="font-bold text-[16px]/tight">{{ franchise.name }}</h3>
+          <h3 class="font-bold text-[16px]/tight text-main-100">{{ franchise.name }}</h3>
 
-          <div class="flex flex-col text-xs/normal text-secondary-deep">
+          <div class="flex flex-col text-xs/normal text-grey-deep">
             <span>{{ franchise.first_year }} — {{ franchise.last_year }}</span>
             <InfoDivider
               :data="[

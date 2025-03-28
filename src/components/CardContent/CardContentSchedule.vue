@@ -1,10 +1,10 @@
 <template>
   <div class="px-4 py-2 flex flex-col gap-1">
     <h3 class="font-bold text-base/tight text-white">{{ release.release.name.main }}</h3>
-    <span class="text-sm text-secondary--static">
+    <span class="text-sm text-grey">
       Эпизод {{ release.new_release_episode_ordinal ?? '??' }}
     </span>
-    <div class="flex flex-col text-secondary-deep--static text-xs">
+    <div class="flex flex-col text-grey-deep text-xs">
       <InfoDivider
         :data="[
           release.release.year.toString(),

@@ -13,8 +13,8 @@
 
         <div class="flex flex-col gap-3">
           <div>
-            <h2 class="text-4xl font-bold text-main">{{ anime.name.main }}</h2>
-            <span class="text-sm text-secondary-deep">{{ anime.name.english }}</span>
+            <h2 class="text-4xl font-bold text-main-100">{{ anime.name.main }}</h2>
+            <span class="text-sm text-main-300">{{ anime.name.english }}</span>
           </div>
 
           <div class="flex gap-3">
@@ -28,31 +28,35 @@
 
           <div class="flex flex-col">
             <div v-for="(info, key) in animeInfo" :key="key">
-              <span class="text-secondary-deep mr-1">{{ key }}:</span>
-              <InfoDivider v-if="Array.isArray(info)" :data="info" class="text-main" />
-              <span v-else class="text-main">
+              <span class="text-main-300 mr-1">{{ key }}:</span>
+              <InfoDivider v-if="Array.isArray(info)" :data="info" class="text-main-100" />
+              <span v-else class="text-main-100">
                 {{ info }}
               </span>
             </div>
           </div>
 
           <div class="flex items-center gap-4">
-            <v-btn prepend-icon="fa-solid fa-play" class="text-main">Смотреть</v-btn>
+            <v-btn prepend-icon="fa-solid fa-play" class="text-main-100">Смотреть</v-btn>
             <v-btn
               icon="fa-solid fa-heart"
               size="small"
               :color="isFavourite ? 'red' : ''"
               @click="onChangeFavourite"
-              class="text-main"
+              class="text-main-100"
             ></v-btn>
             <v-btn
               append-icon="fa-solid fa-caret-down"
               size="default"
-              class="text-main"
+              class="text-main-100"
               :class="{ active: activeAnimeStatus.title }"
             >
               <template #prepend>
-                <v-icon :icon="activeAnimeStatus.icon" size="default" class="text-main"></v-icon>
+                <v-icon
+                  :icon="activeAnimeStatus.icon"
+                  size="default"
+                  class="text-main-100"
+                ></v-icon>
               </template>
               {{ activeAnimeStatus.title }}
               <v-menu activator="parent">
@@ -83,7 +87,7 @@
         </div>
       </div>
 
-      <p class="text-secondary mb-5">{{ anime.description }}</p>
+      <p class="text-main-200 mb-5">{{ anime.description }}</p>
 
       <v-tabs v-model="activeTab" color="red" density="compact">
         <v-tab value="episodes" :ripple="false">Эпизоды</v-tab>

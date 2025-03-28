@@ -2,17 +2,17 @@
   <div class="wrapper py-7">
     <div class="container flex flex-col md:flex-row justify-between md:items-center">
       <div class="mb-7 md:mb-0">
-        <h2 class="title text-4xl mb-3">Animeme</h2>
-        <p class="text-secondary-deep">Так звучит аниме!</p>
-        <p class="text-secondary-deep">
+        <h2 class="title text-main-100 text-4xl mb-3">Animeme</h2>
+        <p class="text-main-300">Так звучит аниме!</p>
+        <p class="text-main-300">
           Перевод и озвучивание на русский язык аниме-сериалов и не только.
         </p>
-        <p class="text-secondary-deep">Спасибо что выбираете нас!</p>
+        <p class="text-main-300">Спасибо что выбираете нас!</p>
       </div>
 
       <div>
-        <h3 class="mb-2">Навигация</h3>
-        <nav class="text-secondary-deep">
+        <h3 class="mb-2 text-main-100">Навигация</h3>
+        <nav class="text-main-300">
           <ul>
             <li>
               <router-link :to="RouteNames.Home">Главная</router-link>
@@ -42,7 +42,7 @@ import { RouteNames } from '@/router'
 
 <style scoped>
 .wrapper {
-  background-color: rgb(33 33 33);
+  background-color: rgb(var(--v-theme-footer));
 }
 
 .title {

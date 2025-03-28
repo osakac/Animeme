@@ -14,8 +14,10 @@
               ></v-img>
             </template>
 
-            <v-list-item-title class="text-xl! font-bold!">{{ genreInfo.name }}</v-list-item-title>
-            <v-list-item-subtitle class="text-secondary">
+            <v-list-item-title class="text-main-100 text-xl! font-bold!">
+              {{ genreInfo.name }}
+            </v-list-item-title>
+            <v-list-item-subtitle class="text-main-200">
               {{ pluralizeReleases(genreInfo.total_releases) }}
             </v-list-item-subtitle>
           </v-list-item>

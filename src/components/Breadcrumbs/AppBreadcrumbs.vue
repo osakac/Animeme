@@ -27,7 +27,7 @@ defineProps<Props>()
 
 <style scoped>
 .breadcrumb {
-  color: rgb(var(--v-theme-main));
+  color: rgb(var(--v-theme-main-100));
 
   &:hover {
     color: rgb(var(--v-theme-accent));
@@ -35,7 +35,7 @@ defineProps<Props>()
 
   &.disabled {
     @apply pointer-events-none overflow-hidden text-ellipsis;
-    color: rgb(var(--v-theme-secondary-deep));
+    color: rgb(var(--v-theme-main-300));
   }
 }
 </style>

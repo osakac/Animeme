@@ -1,13 +1,13 @@
 <template>
-  <header class="sticky top-0 z-10 pb-5 pt-2 bg-background-deep">
+  <header class="sticky top-0 z-10 pb-5 pt-2 bg-header">
     <div class="container relative">
       <div class="flex justify-between">
         <div class="flex items-end gap-7">
-          <router-link to="/" class="text-main mr-4">
+          <router-link to="/" class="text-main-100 mr-4">
             <h1 class="title text-4xl">Animeme</h1>
           </router-link>
           <nav v-if="display.width.value >= 800">
-            <ul class="flex gap-6 list-none text-main">
+            <ul class="flex gap-6 list-none text-main-100">
               <li>
                 <router-link :to="{ name: RouteNames.Catalog }" active-class="active">
                   Релизы
@@ -32,7 +32,7 @@
           </nav>
         </div>
 
-        <div class="flex items-end gap-4">
+        <div class="flex items-end gap-4 text-main-100">
           <v-dialog
             v-model="isSearchVisible"
             max-width="700"
