@@ -21,7 +21,9 @@
       />
 
       <div class="absolute top-0 left-0 w-full h-full p-4! flex flex-col justify-end">
-        <h3 class="episode-name text-sm font-bold transition-colors ease-in-out duration-500">
+        <h3
+          class="episode-name text-sm text-white font-bold transition-colors ease-in-out duration-500"
+        >
           {{ episode.name }}
         </h3>
         <h3 class="text-white">{{ episode.ordinal }} эпизод</h3>

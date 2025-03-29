@@ -27,6 +27,21 @@ const vuetifyConfig: VuetifyOptions = {
           'grey-deep': '#9e9e9e',
         },
       },
+      customLight: {
+        dark: false,
+        colors: {
+          'main-100': '#000',
+          'main-200': '#616161',
+          'main-300': '#9e9e9e',
+          accent: '#D50000',
+          header: '#BDBDBD',
+          background: '#FAFAFA',
+          footer: '#212121',
+          white: '#fff',
+          grey: '#ccc',
+          'grey-deep': '#9e9e9e',
+        },
+      },
     },
   },
   defaults: {

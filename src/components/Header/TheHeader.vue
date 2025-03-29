@@ -33,6 +33,7 @@
         </div>
 
         <div class="flex items-end gap-4 text-main-100">
+          <v-btn @click="changeTheme" variant="text" :icon="themeIcon" size="x-small"></v-btn>
           <v-dialog
             v-model="isSearchVisible"
             max-width="700"
@@ -88,8 +89,8 @@
 
 <script setup lang="ts">
 import { RouteNames } from '@/router'
-import { ref } from 'vue'
-import { useDisplay } from 'vuetify'
+import { computed, ref } from 'vue'
+import { useDisplay, useTheme } from 'vuetify'
 import TheSearch from '../Search/TheSearch.vue'
 import TheSidebar from '../Sidebar/TheSidebar.vue'
 
@@ -98,6 +99,13 @@ const display = useDisplay()
 const isSidebarVisible = ref(false)
 
 const isSearchVisible = ref(false)
+
+const theme = useTheme()
+const themeIcon = computed(() =>
+  theme.global.current.value.dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon',
+)
+const changeTheme = () =>
+  (theme.global.name.value = theme.global.current.value.dark ? 'customLight' : 'customDark')
 </script>
 
 <style scoped>
