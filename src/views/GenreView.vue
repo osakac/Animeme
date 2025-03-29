@@ -3,7 +3,7 @@
 
   <AppSection title="Релизы жанра" subtitle="Список релизов выбранного жанра">
     <template v-if="genreInfo">
-      <v-sheet class="rounded-xl! overflow-hidden mb-5">
+      <v-sheet class="rounded-xl! overflow-hidden mb-5 drop-shadow-xl">
         <v-list>
           <v-list-item>
             <template #prepend>

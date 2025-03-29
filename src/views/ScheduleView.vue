@@ -70,3 +70,17 @@ onMounted(async () => {
   if (data) schedule.value = doScheduleWeek(data)
 })
 </script>
+
+<style scoped>
+@reference "tailwindcss";
+
+.v-btn-group.v-theme--customLight {
+  .v-btn {
+    background: rgb(var(--v-theme-grey));
+  }
+
+  .v-btn--active {
+    @apply text-white;
+  }
+}
+</style>
