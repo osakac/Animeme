@@ -125,7 +125,7 @@
 
       <v-sheet class="rounded-xl! py-2 px-5">
         <div class="flex gap-2">
-          <v-btn color="rgb(var(--v-theme-accent))" class="flex-1" @click="onApplyFilter">
+          <v-btn color="rgb(var(--v-theme-accent))" class="flex-1 apply-btn" @click="onApplyFilter">
             Применить
           </v-btn>
           <v-btn variant="tonal" class="flex-1" @click="onResetFilter">Сбросить</v-btn>
@@ -320,5 +320,9 @@ onMounted(async () => {
 
 .inner-filter {
   @apply overflow-y-scroll max-w-[300px];
+}
+
+.apply-btn {
+  @apply text-white;
 }
 </style>
