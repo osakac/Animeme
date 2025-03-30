@@ -1,6 +1,6 @@
 <template>
   <v-sheet class="rounded-xl! overflow-hidden">
-    <v-list v-if="releases">
+    <v-list v-if="releases.length">
       <template v-for="(anime, index) in releases" :key="anime.id">
         <v-list-item :to="{ name: RouteNames.Anime, params: { animeAlias: anime.alias } }">
           <template #prepend v-if="display.width.value > 600">
@@ -37,6 +37,8 @@
         <v-divider v-if="index !== releases.length - 1" class="my-4" />
       </template>
     </v-list>
+
+    <v-skeleton-loader v-else type="list-item-three-line" />
   </v-sheet>
 </template>
 
@@ -47,7 +49,7 @@ import { inject } from 'vue'
 import { useDisplay } from 'vuetify'
 import InfoDivider from '../InfoDivider/InfoDivider.vue'
 
-defineProps<{ releases: Anime[] | undefined }>()
+defineProps<{ releases: Anime[] }>()
 const siteUrl = inject('siteUrl')
 
 const display = useDisplay()

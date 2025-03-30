@@ -14,8 +14,8 @@
     </div>
 
     <div class="flex gap-5">
-      <div>
-        <CatalogList v-if="releases.length" :releases />
+      <div class="max-w-[830px] w-full">
+        <CatalogList :releases />
         <div ref="observerTarget"></div>
       </div>
       <CatalogFilter
