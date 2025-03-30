@@ -17,6 +17,21 @@
       <div class="max-w-[830px] w-full">
         <CatalogList :releases />
         <div ref="observerTarget"></div>
+
+        <v-list v-if="!releases.length">
+          <v-list-item v-for="index in 4" :key="index">
+            <template #prepend>
+              <v-skeleton-loader
+                type="image@2"
+                class="w-[180px] h-[260px] rounded-lg overflow-hidden"
+              />
+            </template>
+
+            <div>
+              <v-skeleton-loader type="heading, text, paragraph" />
+            </div>
+          </v-list-item>
+        </v-list>
       </div>
       <CatalogFilter
         v-show="isFilterOpen"

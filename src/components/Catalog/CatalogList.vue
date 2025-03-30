@@ -37,8 +37,6 @@
         <v-divider v-if="index !== releases.length - 1" class="my-4" />
       </template>
     </v-list>
-
-    <v-skeleton-loader v-else type="list-item-three-line" />
   </v-sheet>
 </template>
 
