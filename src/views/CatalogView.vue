@@ -14,7 +14,7 @@
     </div>
 
     <div class="flex gap-5">
-      <div class="max-w-[1166px] w-full">
+      <div class="max-w-[1248px] w-full">
         <CatalogList :releases />
         <div ref="observerTarget"></div>
 
