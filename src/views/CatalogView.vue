@@ -14,7 +14,7 @@
     </div>
 
     <div class="flex gap-5">
-      <div class="max-w-[830px] w-full">
+      <div class="max-w-[1166px] w-full">
         <CatalogList :releases />
         <div ref="observerTarget"></div>
 
@@ -79,9 +79,7 @@ const filter = ref<Filter>({
   seasons: [],
   sort: null,
 })
-const onApplyFilter = (filterValue: Filter) => {
-  filter.value = filterValue
-}
+const onApplyFilter = (filterValue: Filter) => (filter.value = filterValue)
 const onResetFilter = () => {
   filter.value = {
     genres: [],
