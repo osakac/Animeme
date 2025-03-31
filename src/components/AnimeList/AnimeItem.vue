@@ -4,7 +4,7 @@
       <v-card
         v-bind="props"
         :to="{ name: RouteNames.Anime, params: { animeAlias: anime.alias } }"
-        :image="`${siteUrl}${anime.poster.optimized.src}`"
+        :image="siteUrl(anime.poster.optimized.src)"
         v-touch="{
           start: onTouchStart,
           end: onTouchEnd,
@@ -21,13 +21,12 @@
 
 <script setup lang="ts">
 import { useTouchVisible } from '@/composables/useTouchVisible'
+import { siteUrl } from '@/helpers/siteUrl'
 import { RouteNames } from '@/router'
 import type { Anime } from '@/types/anilibria.types'
-import { inject } from 'vue'
 import CardContentAnime from '../CardContent/CardContentAnime.vue'
 
 defineProps<{ anime: Anime }>()
-const siteUrl = inject('siteUrl')
 
 const { isVisible, onTouchStart, onTouchEnd } = useTouchVisible()
 </script>

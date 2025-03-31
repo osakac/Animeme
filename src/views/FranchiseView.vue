@@ -43,7 +43,7 @@
         >
           <template #prepend>
             <v-img
-              :src="`${siteUrl}${franchise.release.poster.optimized.src}`"
+              :src="siteUrl(franchise.release.poster.optimized.src)"
               :alt="franchise.release.name.main"
               cover
               class="w-20 h-20 rounded-lg mr-5"
@@ -82,13 +82,13 @@ import { loadFranchise } from '@/api/anilibria.api'
 import AppBreadcrumbs from '@/components/Breadcrumbs/AppBreadcrumbs.vue'
 import InfoDivider from '@/components/InfoDivider/InfoDivider.vue'
 import { pluralizeEpisodes, pluralizeSeasons } from '@/helpers/pluralize'
+import { siteUrl } from '@/helpers/siteUrl'
 import { RouteNames } from '@/router'
 import type { Franchise } from '@/types/anilibria.types'
-import { computed, inject, onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const siteUrl = inject('siteUrl')
 
 const breadcrumbs = computed(() => [
   { title: 'Главная страница', to: { name: RouteNames.Home } },

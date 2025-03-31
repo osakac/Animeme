@@ -9,7 +9,7 @@
     <router-link to="">
       <img
         v-if="episode.preview.optimized.src"
-        :src="`${siteUrl}${episode.preview.optimized.src}`"
+        :src="siteUrl(episode.preview.optimized.src)"
         :alt="episode.name"
         class="image w-full h-full object-cover"
       />
@@ -33,11 +33,11 @@
 </template>
 
 <script setup lang="ts">
+import { siteUrl } from '@/helpers/siteUrl'
 import type { Episode } from '@/types/anilibria.types'
-import { inject, ref } from 'vue'
+import { ref } from 'vue'
 
 defineProps<{ episode: Episode }>()
-const siteUrl = inject('siteUrl')
 
 const isHovered = ref(false)
 const showInfo = () => {

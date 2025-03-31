@@ -13,7 +13,7 @@
     <v-carousel-item
       v-for="item in data"
       :key="item.id"
-      :src="`${siteUrl}${item.image.optimized.preview}`"
+      :src="siteUrl(item.image.optimized.preview)"
       :alt="item.release.name.main"
       class="slide"
       cover
@@ -84,13 +84,12 @@
 
 <script setup lang="ts">
 import { pluralizeEpisodes } from '@/helpers/pluralize'
+import { siteUrl } from '@/helpers/siteUrl'
 import { RouteNames } from '@/router'
 import type { SliderAnime } from '@/types/anilibria.types'
-import { inject } from 'vue'
 import InfoDivider from '../InfoDivider/InfoDivider.vue'
 
 defineProps<{ data: SliderAnime[] | null }>()
-const siteUrl = inject('siteUrl')
 </script>
 
 <style scoped>

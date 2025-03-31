@@ -1,7 +1,7 @@
 <template>
   <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
     <v-card v-for="video in videos" :key="video.id" @click="openVideo(video.url)">
-      <v-img :src="`${siteUrl}${video.image.optimized.preview}`"></v-img>
+      <v-img :src="siteUrl(video.image.optimized.preview)"></v-img>
       <v-card-title
         class="h-[55px] text-main-100 text-lg/tight! text-ellipsis line-clamp-2! text-wrap mb-1"
       >
@@ -22,11 +22,10 @@
 </template>
 
 <script setup lang="ts">
+import { siteUrl } from '@/helpers/siteUrl'
 import type { Video } from '@/types/anilibria.types'
-import { inject } from 'vue'
 
 defineProps<{ videos: Video[] | undefined }>()
-const siteUrl = inject('siteUrl')
 
 const openVideo = (url: string) => window.open(url, '_blank')
 </script>

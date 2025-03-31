@@ -7,7 +7,7 @@
       class="max-h-[200px]"
     >
       <div class="h-full grid grid-cols-2">
-        <v-img :src="`${siteUrl}${franchise.image.preview}`" cover />
+        <v-img :src="siteUrl(franchise.image.preview)" cover />
         <div class="px-4 py-3 flex flex-col justify-between gap-5">
           <h3 class="font-bold text-[16px]/tight text-main-100">{{ franchise.name }}</h3>
 
@@ -29,11 +29,10 @@
 
 <script setup lang="ts">
 import { pluralizeEpisodes, pluralizeSeasons } from '@/helpers/pluralize'
+import { siteUrl } from '@/helpers/siteUrl'
 import { RouteNames } from '@/router'
 import type { Franchise } from '@/types/anilibria.types'
-import { inject } from 'vue'
 import InfoDivider from '../InfoDivider/InfoDivider.vue'
 
 defineProps<{ franchises: Franchise[] | undefined }>()
-const siteUrl = inject('siteUrl')
 </script>

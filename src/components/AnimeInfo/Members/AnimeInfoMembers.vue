@@ -5,7 +5,7 @@
         <template #prepend>
           <img
             v-if="member.user?.avatar.optimized.preview"
-            :src="`${siteUrl}${member.user.avatar.optimized.preview}`"
+            :src="siteUrl(member.user.avatar.optimized.preview)"
             :alt="member.nickname"
             class="w-16 h-16 rounded-xl!"
           />
@@ -23,11 +23,10 @@
 </template>
 
 <script setup lang="ts">
+import { siteUrl } from '@/helpers/siteUrl'
 import type { Member } from '@/types/anilibria.types'
-import { inject } from 'vue'
 
 defineProps<{ members: Member[] }>()
-const siteUrl = inject('siteUrl')
 </script>
 
 <style scoped>

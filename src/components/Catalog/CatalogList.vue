@@ -5,7 +5,7 @@
         <v-list-item :to="{ name: RouteNames.Anime, params: { animeAlias: anime.alias } }">
           <template #prepend v-if="display.width.value > 600">
             <v-img
-              :src="`${siteUrl}${anime.poster.optimized.src}`"
+              :src="siteUrl(anime.poster.optimized.src)"
               :alt="anime.name.main"
               cover
               class="w-[180px] h-[260px] rounded-lg mr-5"
@@ -41,14 +41,13 @@
 </template>
 
 <script setup lang="ts">
+import { siteUrl } from '@/helpers/siteUrl'
 import { RouteNames } from '@/router'
 import type { Anime } from '@/types/anilibria.types'
-import { inject } from 'vue'
 import { useDisplay } from 'vuetify'
 import InfoDivider from '../InfoDivider/InfoDivider.vue'
 
 defineProps<{ releases: Anime[] }>()
-const siteUrl = inject('siteUrl')
 
 const display = useDisplay()
 </script>

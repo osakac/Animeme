@@ -8,7 +8,7 @@
           <v-list-item>
             <template #prepend>
               <v-img
-                :src="`${siteUrl}${genreInfo.image.optimized.preview}`"
+                :src="siteUrl(genreInfo.image.optimized.preview)"
                 cover
                 class="w-20 h-20 mr-5 rounded-lg"
               ></v-img>
@@ -37,13 +37,13 @@ import AppBreadcrumbs from '@/components/Breadcrumbs/AppBreadcrumbs.vue'
 import AppSection from '@/components/Section/AppSection.vue'
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
 import { pluralizeReleases } from '@/helpers/pluralize'
+import { siteUrl } from '@/helpers/siteUrl'
 import { RouteNames } from '@/router'
 import type { Anime, Genre } from '@/types/anilibria.types'
-import { computed, inject, onMounted, ref, useTemplateRef } from 'vue'
+import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const siteUrl = inject('siteUrl')
 
 const breadcrumbs = computed(() => [
   { title: 'Главная страница', to: { name: RouteNames.Home } },

@@ -12,7 +12,7 @@
       >
         <template #image>
           <v-img
-            :src="`${siteUrl}${anime.release.poster.optimized.src}`"
+            :src="siteUrl(anime.release.poster.optimized.src)"
             cover
             class="darkened-image"
             :class="{ 'is-hovered': isHovering || isVisible }"
@@ -27,13 +27,12 @@
 
 <script setup lang="ts">
 import { useTouchVisible } from '@/composables/useTouchVisible'
+import { siteUrl } from '@/helpers/siteUrl'
 import { RouteNames } from '@/router'
 import type { Schedule } from '@/types/anilibria.types'
-import { inject } from 'vue'
 import CardContentSchedule from '../CardContent/CardContentSchedule.vue'
 
 defineProps<{ anime: Schedule }>()
-const siteUrl = inject('siteUrl')
 
 const { isVisible, onTouchStart, onTouchEnd } = useTouchVisible()
 </script>

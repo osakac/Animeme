@@ -30,7 +30,7 @@
         >
           <template #prepend>
             <img
-              :src="`${siteUrl}${item.release.poster.optimized.src}`"
+              :src="siteUrl(item.release.poster.optimized.src)"
               :alt="item.release.name.main"
               class="w-20 h-20 rounded-lg object-cover"
             />
@@ -68,12 +68,12 @@
 import { loadAnimeFranchise } from '@/api/anilibria.api'
 import InfoDivider from '@/components/InfoDivider/InfoDivider.vue'
 import { pluralizeEpisodes, pluralizeSeasons } from '@/helpers/pluralize'
+import { siteUrl } from '@/helpers/siteUrl'
 import { RouteNames } from '@/router'
 import type { Franchise } from '@/types/anilibria.types'
-import { computed, inject, onBeforeMount, ref } from 'vue'
+import { computed, onBeforeMount, ref } from 'vue'
 
 const props = defineProps<{ franchiseId: number }>()
-const siteUrl = inject('siteUrl')
 
 const franchise = ref<Franchise | null>(null)
 const franchiseReleases = computed(() =>

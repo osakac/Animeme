@@ -6,7 +6,7 @@
       <div class="flex items-end gap-10 mb-5">
         <img
           v-if="display.width.value >= 900"
-          :src="`${siteUrl}${anime.poster.optimized.src}`"
+          :src="siteUrl(anime.poster.optimized.src)"
           :alt="anime.name.main"
           class="max-w-[300px] max-h-[420px] rounded-2xl"
         />
@@ -125,14 +125,14 @@ import AppBreadcrumbs from '@/components/Breadcrumbs/AppBreadcrumbs.vue'
 import InfoDivider from '@/components/InfoDivider/InfoDivider.vue'
 import { getTotalWatchTime } from '@/helpers/getTotalWatchTime'
 import { getWeekday } from '@/helpers/getWeekday'
+import { siteUrl } from '@/helpers/siteUrl'
 import { RouteNames } from '@/router'
 import type { Anime } from '@/types/anilibria.types'
-import { computed, inject, ref, watchEffect } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { useDisplay } from 'vuetify'
 
 const route = useRoute()
-const siteUrl = inject('siteUrl')
 
 const anime = ref<Anime | null>(null)
 

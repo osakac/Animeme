@@ -16,7 +16,7 @@
       >
         <template #prepend>
           <img
-            :src="`${siteUrl}${item.poster.optimized.src}`"
+            :src="siteUrl(item.poster.optimized.src)"
             alt=""
             class="w-15 h-15 rounded-xl! mr-3"
           />
@@ -40,12 +40,12 @@
 import { loadAnimeSearch } from '@/api/anilibria.api'
 import { useSearch } from '@/composables/useSearch'
 import { debounce } from '@/helpers/debounce'
+import { siteUrl } from '@/helpers/siteUrl'
 import type { Anime } from '@/types/anilibria.types'
-import { inject, ref } from 'vue'
+import { ref } from 'vue'
 import InfoDivider from '../InfoDivider/InfoDivider.vue'
 
 const emit = defineEmits<{ (e: 'close'): void }>()
-const siteUrl = inject('siteUrl')
 
 const { search } = useSearch(onSearch)
 const searchList = ref<Anime[]>([])
