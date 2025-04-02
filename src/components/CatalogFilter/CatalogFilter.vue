@@ -137,10 +137,17 @@
 
 <script setup lang="ts">
 import { loadGenres } from '@/api/anilibria.api'
+import { useFilterField } from '@/composables/useFilterField'
 import type { Genre } from '@/types/anilibria.types'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, toRaw, watchEffect } from 'vue'
 import { useDisplay } from 'vuetify'
 import AppSection from '../Section/AppSection.vue'
+
+const emit = defineEmits<{
+  (e: 'applyFilter', filter: Filter): void
+  (e: 'resetFilter'): void
+  (e: 'closeFilter'): void
+}>()
 
 const display = useDisplay()
 const isMobile = computed(() => display.width.value < 1024)
@@ -153,6 +160,9 @@ const onCloseFilter = (event: Event) => {
 
   emit('closeFilter')
 }
+watchEffect(() => {
+  if (isMobile.value) emit('closeFilter')
+})
 
 export interface Filter {
   genres: string[]
@@ -162,16 +172,9 @@ export interface Filter {
   seasons: string[]
 }
 
-const emit = defineEmits<{
-  (e: 'applyFilter', filter: Filter): void
-  (e: 'resetFilter'): void
-  (e: 'closeFilter'): void
-}>()
-
 const selectedGenres = ref<string[]>([])
 const genres = ref<Genre[]>([])
 
-const selectedType = ref<string[]>([])
 const types = ref([
   { title: 'ТВ', value: 'TV', active: false },
   { title: 'Фильм', value: 'MOVIE', active: false },
@@ -182,42 +185,21 @@ const types = ref([
   { title: 'Дорама', value: 'DORAMA', active: false },
   { title: 'OAD', value: 'OAD', active: false },
 ])
-const onChangeType = (type: { title: string; value: string; active: boolean }) => {
-  if (!type.active) {
-    type.active = true
-    selectedType.value.push(type.value)
-  } else {
-    type.active = false
-    selectedType.value = selectedType.value.filter((t) => t !== type.value)
-  }
-}
-const resetTypes = () => {
-  selectedType.value = []
-  types.value.forEach((type) => {
-    type.active = false
-  })
-}
+const {
+  selectedItems: selectedTypes,
+  onChangeField: onChangeType,
+  onResetField: resetTypes,
+} = useFilterField(types.value)
 
-const selectedStatus = ref<string[]>([])
 const statuses = ref([
   { title: 'Онгоинг', value: 'IS_ONGOING', active: false },
   { title: 'Неонгоинг', value: 'IS_NOT_ONGOING', active: false },
 ])
-const onChangeStatus = (status: { title: string; value: string; active: boolean }) => {
-  if (!status.active) {
-    status.active = true
-    selectedStatus.value.push(status.value)
-  } else {
-    status.active = false
-    selectedStatus.value = selectedStatus.value.filter((s) => s !== status.value)
-  }
-}
-const resetStatuses = () => {
-  selectedStatus.value = []
-  statuses.value.forEach((status) => {
-    status.active = false
-  })
-}
+const {
+  selectedItems: selectedStatuses,
+  onChangeField: onChangeStatus,
+  onResetField: resetStatuses,
+} = useFilterField(statuses.value)
 
 const selectedSort = ref<string | null>(null)
 const sortItems = ref<{ id: string; info: { title: string; subtitle: string } }[]>([
@@ -259,41 +241,32 @@ const sortItems = ref<{ id: string; info: { title: string; subtitle: string } }[
   },
 ])
 
-const selectedSeasons = ref<string[]>([])
 const seasons = ref([
   { title: 'Зима', value: 'winter', active: false },
   { title: 'Весна', value: 'spring', active: false },
   { title: 'Лето', value: 'summer', active: false },
   { title: 'Осень', value: 'autumn', active: false },
 ])
-const onChangeSeason = (season: { title: string; value: string; active: boolean }) => {
-  if (!season.active) {
-    season.active = true
-    selectedSeasons.value.push(season.value)
-  } else {
-    season.active = false
-    selectedSeasons.value = selectedSeasons.value.filter((s) => s !== season.value)
-  }
-}
-const resetSeasons = () => {
-  selectedSeasons.value = []
-  seasons.value.forEach((season) => {
-    season.active = false
-  })
-}
+const {
+  selectedItems: selectedSeasons,
+  onChangeField: onChangeSeason,
+  onResetField: resetSeasons,
+} = useFilterField(seasons.value)
 
 const onApplyFilter = () => {
-  emit('applyFilter', {
-    genres: selectedGenres.value,
-    types: selectedType.value,
-    statuses: selectedStatus.value,
-    sort: selectedSort.value,
-    seasons: selectedSeasons.value,
-  })
+  emit(
+    'applyFilter',
+    structuredClone({
+      genres: toRaw(selectedGenres.value),
+      types: toRaw(selectedTypes.value),
+      statuses: toRaw(selectedStatuses.value),
+      sort: toRaw(selectedSort.value),
+      seasons: toRaw(selectedSeasons.value),
+    }),
+  )
 
   if (display.width.value < 1024) emit('closeFilter')
 }
-
 const onResetFilter = () => {
   emit('resetFilter')
   selectedGenres.value = []
