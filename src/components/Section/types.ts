@@ -1,5 +1,7 @@
+import type { RouteNames } from '@/router'
+
 export interface Props {
-  to?: { name: string; params?: { animeAlias: string } }
+  to?: RouteNames
   title: string
   subtitle: string
 }

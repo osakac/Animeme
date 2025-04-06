@@ -3,7 +3,7 @@
     <TheSlider :data="sliderData" />
 
     <AppSection
-      :to="{ name: RouteNames.NewEpisodes }"
+      :to="RouteNames.NewEpisodes"
       title="Новые эпизоды"
       subtitle="Самые новые и свежие эпизоды в любимой озвучке"
     >
@@ -11,7 +11,7 @@
     </AppSection>
 
     <AppSection
-      :to="{ name: RouteNames.Schedule }"
+      :to="RouteNames.Schedule"
       title="Расписание релизов"
       subtitle="Список релизов, над которыми команда трудится прямо сейчас"
     >
@@ -26,16 +26,12 @@
       <ScheduleTable :schedule-day="schedule?.[scheduleDay]" />
     </AppSection>
 
-    <AppSection
-      :to="{ name: RouteNames.Genres }"
-      title="Жанры"
-      subtitle="Список жанров на любой вкус и цвет"
-    >
+    <AppSection :to="RouteNames.Genres" title="Жанры" subtitle="Список жанров на любой вкус и цвет">
       <GenresList :genres view="linear" />
     </AppSection>
 
     <AppSection
-      :to="{ name: RouteNames.Franchises }"
+      :to="RouteNames.Franchises"
       title="Франшизы"
       subtitle="Самые интересные и захватывающие франшизы в любимой озвучке"
     >
@@ -43,7 +39,7 @@
     </AppSection>
 
     <AppSection
-      :to="{ name: RouteNames.Videos }"
+      :to="RouteNames.Videos"
       title="Новые видео"
       subtitle="Самые интересные видео ролики от любимой команды"
     >
