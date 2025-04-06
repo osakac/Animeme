@@ -7,7 +7,9 @@
       title="Новые эпизоды"
       subtitle="Самые новые и свежие эпизоды в любимой озвучке"
     >
-      <AnimeList :data="newEpisodesData" view="linear" />
+      <AppList view="linear">
+        <AnimeList :data="newEpisodesData" />
+      </AppList>
     </AppSection>
 
     <AppSection
@@ -27,7 +29,9 @@
     </AppSection>
 
     <AppSection :to="RouteNames.Genres" title="Жанры" subtitle="Список жанров на любой вкус и цвет">
-      <GenresList :genres view="linear" />
+      <AppList view="linear">
+        <GenresList :genres />
+      </AppList>
     </AppSection>
 
     <AppSection
@@ -58,6 +62,7 @@ import {
   loadSliderData,
 } from '@/api/anilibria.api'
 import AnimeList from '@/components/AnimeList/AnimeList.vue'
+import AppList from '@/components/AppList/AppList.vue'
 import FranchisesList from '@/components/Franchises/FranchisesList.vue'
 import GenresList from '@/components/Genres/GenresList.vue'
 import ScheduleTable from '@/components/ScheduleTable/ScheduleTable.vue'

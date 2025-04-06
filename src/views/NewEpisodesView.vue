@@ -10,7 +10,9 @@
         class="mb-5"
       ></v-text-field>
 
-      <AnimeList :data="newEpisodes" view="list" />
+      <AppList view="list">
+        <AnimeList :data="newEpisodes" />
+      </AppList>
     </div>
   </AppSection>
 </template>
@@ -18,6 +20,7 @@
 <script setup lang="ts">
 import { loadNewEpisodes } from '@/api/anilibria.api'
 import AnimeList from '@/components/AnimeList/AnimeList.vue'
+import AppList from '@/components/AppList/AppList.vue'
 import AppBreadcrumbs from '@/components/Breadcrumbs/AppBreadcrumbs.vue'
 import AppSection from '@/components/Section/AppSection.vue'
 import { useSearch } from '@/composables/useSearch'

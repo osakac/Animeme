@@ -25,7 +25,9 @@
       </v-sheet>
     </template>
 
-    <AnimeList :data="releases" view="list" />
+    <AppList view="list">
+      <AnimeList :data="releases" />
+    </AppList>
     <div ref="observerTarget"></div>
   </AppSection>
 </template>
@@ -33,6 +35,7 @@
 <script setup lang="ts">
 import { loadGenre } from '@/api/anilibria.api'
 import AnimeList from '@/components/AnimeList/AnimeList.vue'
+import AppList from '@/components/AppList/AppList.vue'
 import AppBreadcrumbs from '@/components/Breadcrumbs/AppBreadcrumbs.vue'
 import AppSection from '@/components/Section/AppSection.vue'
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll'

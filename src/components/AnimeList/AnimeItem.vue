@@ -1,22 +1,24 @@
 <template>
-  <v-hover>
-    <template #default="{ isHovering, props }">
-      <v-card
-        v-bind="props"
-        :to="{ name: RouteNames.Anime, params: { animeAlias: anime.alias } }"
-        :image="siteUrl(anime.poster.optimized.src)"
-        v-touch="{
-          start: onTouchStart,
-          end: onTouchEnd,
-        }"
-        class="max-w-48 h-72 w-full shrink-0"
-      >
-        <transition>
-          <CardContentAnime v-if="isHovering || isVisible" :anime />
-        </transition>
-      </v-card>
-    </template>
-  </v-hover>
+  <li>
+    <v-hover>
+      <template #default="{ isHovering, props }">
+        <v-card
+          v-bind="props"
+          :to="{ name: RouteNames.Anime, params: { animeAlias: anime.alias } }"
+          :image="siteUrl(anime.poster.optimized.src)"
+          v-touch="{
+            start: onTouchStart,
+            end: onTouchEnd,
+          }"
+          class="h-full"
+        >
+          <transition>
+            <CardContentAnime v-if="isHovering || isVisible" :anime />
+          </transition>
+        </v-card>
+      </template>
+    </v-hover>
+  </li>
 </template>
 
 <script setup lang="ts">
