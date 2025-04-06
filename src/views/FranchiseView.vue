@@ -7,7 +7,7 @@
         <v-list-item>
           <template #prepend>
             <v-img
-              :src="`${siteUrl}${franchise.image.preview}`"
+              :src="siteUrl(franchise.image.preview)"
               cover
               class="w-20 h-20 mr-5 rounded-lg"
             ></v-img>
