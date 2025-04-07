@@ -132,6 +132,6 @@ nav {
 }
 
 .v-btn:hover {
-  background-color: rgb(var(--v-theme-secondary-light));
+  background-color: rgb(var(--v-theme-grey-deep), 0.4);
 }
 </style>
