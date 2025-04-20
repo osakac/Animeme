@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const taxios = axios.create({
-  baseURL: 'https://anilibria.top/api/v1',
+  baseURL: 'https://anilibria.wtf/api/v1',
   headers: {
     'Content-Type': 'application/json',
   },
