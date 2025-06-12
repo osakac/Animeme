@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col gap-10">
-    <TheSlider :data="sliderData" />
+    <!-- TODO: Временно не работает -->
+    <TheSlider v-if="false" :data="sliderData" />
 
     <AppSection
       :to="RouteNames.NewEpisodes"
